@@ -69,5 +69,47 @@ VOTE TRACK
    1         2         3         4        5 
 ```
 
+Below the Quest number is the number of players who are sent on this particular quest. In order for Team good to win, they need to pass three missions without team Evil assassinating Merlin - in order for team evil to win they need to assassinate Merlin or fail three missions. A mission is failed if one of the people who was selected to go on the mission fails the mission.
+
+The vote track is for managing the mission team proposals. In order to select the players who are sent on a particular quest, we rotate through the players and they make suggestions for who goes on the missions. After a player suggests a team - the other players can vote on whether or not to accept or reject this team. Players should reject teams if they believe that the members on the team will not help their cause. Team good needs to be careful because the vote track exists to prevent too many failed suggestions in a single round. If no team is selected after five player suggestions in a row - five different players made suggestions and players rejected them - team Evil automatically wins. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Database 
+
+H2 Database is used to store the data. It is an in memory data that is created when an application starts up and destroyed when the application is stopped. The advantages are: 
+
+* Zero project setup or infrastructure 
+* Zero Configuration 
+* Zero Maintainance 
+* Easy to use for Quick setups, POCs and Unit Tests
+* Spring Boot provides simple configuration to switch between a real database and an in memory database like H2
+   
+
+We could switch over to an actual database like Mongo for NoSQL or PostgreSQL for SQL but they require a lot of setup and for a simple project like this it would save time from having to: 
+
+* Install the Database (or setup a cloud version)
+* Setup a Schema
+* Setup the tables 
+* Populate the data
+* COnnect the application to the database by setting up a data source and a lot of other code 
+
+Spring Boot has very good integration for H2 so we will be using it for this project. If we want to incorporate another database later that would be a good expansion but for now we will be using H2. 
+
 
 

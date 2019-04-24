@@ -1,8 +1,8 @@
-# TicTalk
+# Javalon
 
-An expansion of the TicTacToe SpringBoot AngularJS Web Service created to help me learn about building
-Web Applications. I plan on integrating a chat room and websockets into this application and developing
-other neat features. 
+An expansion of the TicTalk SpringBoot AngularJS Web Service created to help me learn about building
+Web Applications. I plan on integrating a chat room and websockets into this application as well and covering 
+all of the game logic of the classic board game "The Resistance: Avalon". 
 
 
 ## Getting Started
@@ -18,7 +18,7 @@ Occasionally you may find my project hosted at
 
 **Local Hosting:** 
 
-Otherwise Navigate to the `TicTacToe` folder, ensure gradle is installed and run the following: 
+Otherwise Navigate to the `Javalon` folder, ensure gradle is installed and run the following: 
 ```
 gradle bootrun
 ```
@@ -37,8 +37,6 @@ Gradle 5.2.1  Java version 1.8.0_192
 * [Gradle](https://gradle.org/) - Dependency Management
 
 
-## Acknowledgments
+## Acknowledgments 
 
-* Vertabello Tutorial
-* W3schools Documentation
-* CodeBuddies
+* Spring Documentation

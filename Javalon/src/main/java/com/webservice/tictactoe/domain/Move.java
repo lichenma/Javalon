@@ -24,11 +24,11 @@ public class Move {
     @JoinColumn(name = "game_id", nullable = false)
     private Game game;
 
-    @Column(name="board_row", nullable = false)
-    private int boardRow;
+    @Enumerated(EnumType.STRING)
+    private MoveEvent moveEvent;
 
-    @Column(name="board_column", nullable = false)
-    private int boardColumn;
+    @Enumerated(EnumType.STRING)
+    private MoveData moveData;
 
     @ManyToOne
     @JoinColumn(name="player_id", nullable = true)

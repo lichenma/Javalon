@@ -34,36 +34,33 @@ public class Game {
     private Player firstPlayer;
 
     @ManyToOne
-    @JoinColumn(name="second_player_id",nullable= false)
+    @JoinColumn(name="second_player_id",nullable= true)
     private Player secondPlayer;
     
     @ManyToOne
-    @JoinColumn(name = "third_player_id",nullable = false)
+    @JoinColumn(name = "third_player_id",nullable = true)
     private Player thirdPlayer;
 
     @ManyToOne
-    @JoinColumn(name = "fourth_player_id",nullable = false)
+    @JoinColumn(name = "fourth_player_id",nullable = true)
     private Player fourthPlayer;
     
     @ManyToOne
-    @JoinColumn(name = "fifth_player_id",nullable = false)
+    @JoinColumn(name = "fifth_player_id",nullable = true)
     private Player fifthPlayer;
     
     @ManyToOne
-    @JoinColumn(name = "sixth_player_id",nullable = false)
+    @JoinColumn(name = "sixth_player_id",nullable = true)
     private Player sixthPlayer;
 
     @Enumerated(EnumType.STRING)
     private GameStatus gameStatus;
 
     @Enumerated(EnumType.STRING)
-    private GameEvent gameEvent;
-
-    @Enumerated(EnumType.STRING)
-    private GameData gameData;
-
-    @Enumerated(EnumType.STRING)
     private GameType gameType;
+
+    @Enumerated(EnumType.STRING)
+    private Character firstCharacter;
 
     @Column(name = "created", nullable = false)
     private Date created;

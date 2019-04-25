@@ -144,7 +144,21 @@ I think the player table can roughly stay the same, there is no need for any oth
                                  sixth_player_character  varchar(255)
 ```
 
-The game table will need major redevelopment as we need to determine which data we want to store and calculate server-side and which information we would like to calculate client side. We have the usual data like the game id, as well as the id and characters of the players in the game; but also data like when the game was created, the game status and the game type (I will be using this to manage how many players are in the game)
+The game table will need major redevelopment as we need to determine which data we want to store and calculate server-side and which information we would like to calculate client side. We have the usual data like the game id, as well as the id and characters of the players in the game; but also data like when the game was created, the game status and the game type (I will be using this to manage how many players are in the game). 
+
+
+
+I am thinking about: 
+
+* **gameStatus** to store the usual values - WAITING FOR PLAYER, TEAM GOOD WINS, TEAM EVIL WINS 
+
+* **gameEvent** to store information about the major game moves - PROPOSE_TEAM, VOTE_TEAM, TEAM_MISSION
+
+* **gameData** to store information about the results of the major game moves - PASS, FAIL 
+
+* **gameType** to store information about the game type - FIVE, SIX, SEVEN ... 
+
+
 
 ### Move Table 
 

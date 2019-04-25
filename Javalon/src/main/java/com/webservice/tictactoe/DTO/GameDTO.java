@@ -15,5 +15,4 @@ public class GameDTO {
 
     private int id;
     private GameType gameType;
-    private Piece piece;
 }

@@ -30,7 +30,6 @@ public class GameService {
         Game game=new Game();
         game.setFirstPlayer(player);
         game.setGameType(gameDTO.getGameType());
-        game.setFirstPlayerPieceCode(gameDTO.getPiece());
         game.setGameStatus(gameDTO.getGameType()== GameType.COMPUTER? GameStatus.IN_PROGRESS:GameStatus.WAITS_FOR_PLAYER);
         game.setCreated(new Date());
         gameRepository.save(game);

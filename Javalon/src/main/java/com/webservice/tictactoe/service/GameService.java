@@ -19,6 +19,13 @@ import java.util.stream.Collectors;
 @Transactional
 public class GameService {
 
+    private EnumMap<Integer, Character> enumMap= new EnumMap<Integer, Character>(Character.class);
+    enumMap.put(1, Character.MERLIN);
+    enumMap.put(2, Character.ASSASSIN);
+    enumMap.put(3, Character.PERCIVAL);
+    enumMap.put(4, Character.VILLAGER);
+    enumMap.put(5, Character.MORGANA);
+
     private final GameRepository gameRepository;
 
     @Autowired

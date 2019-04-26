@@ -132,7 +132,7 @@ I think the player table can roughly stay the same, there is no need for any oth
         sixth_player_id         int               FK
         created                 timestamp
         game_status             varchar(255)
-        game_event		         varchar(255)
+        game_event		        varchar(255)
         game_data               varchar(255)
         game_type               varchar(255)
 

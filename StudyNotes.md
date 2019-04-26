@@ -107,12 +107,12 @@ Here is the inital outline for the database tables used in this project.
 ### Player Table
 
 ```
-                                                    player							    
+                        player							    
 
-                                    id		            int		         PK		    
-                                    user_name	        varchar(64)			     
-                                    password_hash       varchar(64)			    
-                                    email	            varchar(128)
+        id		            int		         PK		    
+        user_name	        varchar(64)			     
+        password_hash       varchar(64)			    
+        email	            varchar(128)
 ```
 
 I think the player table can roughly stay the same, there is no need for any other data to be stored in this table 
@@ -121,27 +121,27 @@ I think the player table can roughly stay the same, there is no need for any oth
 ### Game Table 
 
 ```
-                                                    game 
+                        game 
 
-                    		     id			             int               PK
-                			     first_player_id	     int		       FK
-                			     second_player_id	     int               FK
-                                 third_player_id         int               FK
-                                 fourth_player_id        int               FK
-                                 fifth_player_id         int               FK
-                                 sixth_player_id         int               FK
-                			     created                 timestamp
-							     game_status             varchar(255)
-							     game_event		         varchar(255)
-							     game_data               varchar(255)
-                                 game_type               varchar(255)
+        id			            int               PK
+        first_player_id	        int		          FK
+        second_player_id	    int               FK
+        third_player_id         int               FK
+        fourth_player_id        int               FK
+        fifth_player_id         int               FK
+        sixth_player_id         int               FK
+        created                 timestamp
+        game_status             varchar(255)
+        game_event		         varchar(255)
+        game_data               varchar(255)
+        game_type               varchar(255)
 
-							     first_player_character  varchar(255)
-                                 second_player_character varchar(255)
-                                 third_player_character  varchar(255)
-                                 fourth_player_character varchar(255)
-                                 fifth_player_character  varchar(255)
-                                 sixth_player_character  varchar(255)
+        first_player_character  varchar(255)
+        second_player_character varchar(255)
+        third_player_character  varchar(255)
+        fourth_player_character varchar(255)
+        fifth_player_character  varchar(255)
+        sixth_player_character  varchar(255)
 ```
 
 The game table will need major redevelopment as we need to determine which data we want to store and calculate server-side and which information we would like to calculate client side. We have the usual data like the game id, as well as the id and characters of the players in the game; but also data like when the game was created, the game status and the game type (I will be using this to manage how many players are in the game). 
@@ -163,14 +163,14 @@ I am thinking about:
 ### Move Table 
 
 ```
-                                                        move 
+                                    move 
 
-                                        id		            int	  	        PK
-                                        player_id	        int		        FK
-                                        game_id	            int		        FK
-                                        move_event	        varchar(255)	
-                                        move_data           varchar(255)
-                                        created	            timestamp
+                    id		            int	  	        PK
+                    player_id	        int		        FK
+                    game_id	            int		        FK
+                    move_event	        varchar(255)	
+                    move_data           varchar(255)
+                    created	            timestamp
 ```
 
 ## Starting by Modifying the GameService 

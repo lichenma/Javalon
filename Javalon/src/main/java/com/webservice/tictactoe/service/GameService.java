@@ -14,17 +14,11 @@ import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.Random;
 
 @Service
 @Transactional
 public class GameService {
-
-    private EnumMap<Integer, Character> enumMap= new EnumMap<Integer, Character>(Character.class);
-    enumMap.put(1, Character.MERLIN);
-    enumMap.put(2, Character.ASSASSIN);
-    enumMap.put(3, Character.PERCIVAL);
-    enumMap.put(4, Character.VILLAGER);
-    enumMap.put(5, Character.MORGANA);
 
     private final GameRepository gameRepository;
 
@@ -34,6 +28,12 @@ public class GameService {
     }
 
     public Game createNewGame(Player player, GameDTO gameDTO) {
+        private EnumMap<Integer, Character> enumMap= new EnumMap<Integer, Character>(Character.class);
+        enumMap.put(1, Character.MERLIN);
+        enumMap.put(2, Character.ASSASSIN);
+        enumMap.put(3, Character.PERCIVAL);
+        enumMap.put(4, Character.VILLAGER);
+        enumMap.put(5, Character.MORGANA);
         Game game=new Game();
         game.setFirstPlayer(player);
         game.setGameType(gameDTO.getGameType());
@@ -41,6 +41,11 @@ public class GameService {
         game.setCreated(new Date());
         gameRepository.save(game);
 
+        Random rand = new Random();
+        int n = rand.nextInt(5); 
+        n++; 
+        game.setFirstPlayerCharacter(enumMap.getValue(n));
+        enumMap.remove(n);
         return game;
     }
 
@@ -52,7 +57,7 @@ public class GameService {
     }
 
     public List<Game> getGamesToJoin(Player player) {
-        return gameRepository.findByGameTypeAndGameStatus(GameType.COMPETITION,
+        return gameRepository.findByGameStatus(
                 GameStatus.WAITS_FOR_PLAYER).stream().filter(game -> game.getFirstPlayer()!=player).collect(Collectors.toList());
     }
 

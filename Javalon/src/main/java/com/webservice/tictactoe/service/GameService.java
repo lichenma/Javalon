@@ -5,6 +5,7 @@ import com.webservice.tictactoe.domain.Game;
 import com.webservice.tictactoe.domain.Player;
 import com.webservice.tictactoe.enums.GameStatus;
 import com.webservice.tictactoe.enums.GameType;
+import com.webservice.tictactoe.enums.Character;
 import com.webservice.tictactoe.repository.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.util.Date;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.Random;
@@ -29,26 +31,34 @@ public class GameService {
 
     public Game createNewGame(Player player, GameDTO gameDTO) {
 
-        private EnumMap<Integer, Character> enumMap= new EnumMap<Integer, Character>(Character.class);
-        enumMap.put(1, Character.MERLIN);
-        enumMap.put(2, Character.ASSASSIN);
-        enumMap.put(3, Character.PERCIVAL);
-        enumMap.put(4, Character.VILLAGER);
-        enumMap.put(5, Character.MORGANA);
-
         Game game=new Game();
         game.setFirstPlayer(player);
         game.setGameType(gameDTO.getGameType());
-        game.setGameStatus(gameDTO.getGameType()== GameStatus.WAITS_FOR_PLAYER);
+        game.setGameStatus(GameStatus.WAITS_FOR_PLAYER);
         game.setCreated(new Date());
+
+        /////////////////////////////////////
+        // Randomly Selecting Character Role
+        /////////////////////////////////////
 
         Random rand = new Random();
         int n = rand.nextInt(5); 
-        n++; 
-        game.setFirstPlayerCharacter(enumMap.getValue(n));
+        n++;
+
+        if (n==1){
+            game.setFirstPlayerCharacter(Character.MERLIN);
+        } else if (n==2) {
+            game.setFirstPlayerCharacter(Character.ASSASSIN);
+        } else if (n==3) {
+            game.setFirstPlayerCharacter(Character.PERCIVAL);
+        } else if (n==4) {
+            game.setFirstPlayerCharacter(Character.VILLAGER);
+        } else if (n==5) {
+            game.setFirstPlayerCharacter(Character.MORGANA);
+        }
+
         gameRepository.save(game);
 
-        
         return game;
     }
 
@@ -66,6 +76,10 @@ public class GameService {
 
     public Game joinGame(Player player, GameDTO gameDTO) {
         Game game = getGame((long)gameDTO.getId());
+        if (game.getSecondPlayer()==null){
+            game.setSecondPlayer(player);
+            
+        }
         game.setSecondPlayer(player);
         gameRepository.save(game);
 

@@ -2,7 +2,7 @@ package com.webservice.tictactoe.domain;
 
 import com.webservice.tictactoe.enums.GameStatus;
 import com.webservice.tictactoe.enums.GameType;
-import com.webservice.tictactoe.enums.Piece;
+import com.webservice.tictactoe.enums.Character;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -60,33 +60,29 @@ public class Game {
 
     @ManyToOne
     @JoinColumn(name="second_player_character",nullable= true)
-    private Player secondPlayerCharacter;
+    private Character secondPlayerCharacter;
     
     @ManyToOne
     @JoinColumn(name = "third_player_character",nullable = true)
-    private Player thirdPlayerCharacter;
+    private Character thirdPlayerCharacter;
 
     @ManyToOne
     @JoinColumn(name = "fourth_player_character",nullable = true)
-    private Player fourthPlayerCharacter;
+    private Character fourthPlayerCharacter;
     
     @ManyToOne
     @JoinColumn(name = "fifth_player_character",nullable = true)
-    private Player fifthPlayerCharacter;
+    private Character fifthPlayerCharacter;
     
     @ManyToOne
     @JoinColumn(name = "sixth_player_character",nullable = true)
-    private Player sixthPlayerCharacter;
+    private Character sixthPlayerCharacter;
 
-    
     @Enumerated(EnumType.STRING)
     private GameStatus gameStatus;
 
     @Enumerated(EnumType.STRING)
     private GameType gameType;
-
-    @Enumerated(EnumType.STRING)
-    private Character firstCharacter;
 
     @Column(name = "created", nullable = false)
     private Date created;

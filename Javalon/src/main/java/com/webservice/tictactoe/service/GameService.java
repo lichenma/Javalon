@@ -76,12 +76,32 @@ public class GameService {
 
     public Game joinGame(Player player, GameDTO gameDTO) {
         Game game = getGame((long)gameDTO.getId());
+        EnumMap<Character, Integer> enumMap= new EnumMap<Character, Integer>(Character.class);
+        enumMap.put(Character.MERLIN, 1);
+        enumMap.put(Character.ASSASSIN, 2);
+        enumMap.put(Character.PERCIVAL, 3);
+        enumMap.put(Character.VILLAGER, 4);
+        enumMap.put(Character.MORGANA, 5);
+
         if (game.getSecondPlayer()==null){
             game.setSecondPlayer(player);
-            
-        }
-        game.setSecondPlayer(player);
-        gameRepository.save(game);
+            enumMap.remove(game.getFirstPlayerCharacter());
+
+            Random rand = new Random();
+            int n = rand.nextInt(5);
+            n++;
+
+            while (!enumMap.containsValue(n)){
+                n = (n+1)%5;
+            }
+
+            for (Character character : enumMap.keySet()){
+                if (enumMap.get(character)==n){
+                    game.setSecondPlayerCharacter(character);
+                }
+            }
+            gameRepository.save(game);
+        } else if (game.getThirdPlayer()==null)
 
         updateGameStatus(game, GameStatus.IN_PROGRESS);
 

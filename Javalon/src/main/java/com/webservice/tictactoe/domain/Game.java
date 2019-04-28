@@ -54,28 +54,22 @@ public class Game {
     private Player sixthPlayer;
 
 
-    @ManyToOne
-    @JoinColumn(name = "first_player_character",nullable = false)
+    @Column(name = "first_player_character",nullable = false)
     private Character firstPlayerCharacter;
 
-    @ManyToOne
-    @JoinColumn(name="second_player_character",nullable= true)
+    @Column(name="second_player_character",nullable= true)
     private Character secondPlayerCharacter;
-    
-    @ManyToOne
-    @JoinColumn(name = "third_player_character",nullable = true)
+
+    @Column(name = "third_player_character",nullable = true)
     private Character thirdPlayerCharacter;
 
-    @ManyToOne
-    @JoinColumn(name = "fourth_player_character",nullable = true)
+    @Column(name = "fourth_player_character",nullable = true)
     private Character fourthPlayerCharacter;
-    
-    @ManyToOne
-    @JoinColumn(name = "fifth_player_character",nullable = true)
+
+    @Column(name = "fifth_player_character",nullable = true)
     private Character fifthPlayerCharacter;
-    
-    @ManyToOne
-    @JoinColumn(name = "sixth_player_character",nullable = true)
+
+    @Column(name = "sixth_player_character",nullable = true)
     private Character sixthPlayerCharacter;
 
     @Enumerated(EnumType.STRING)

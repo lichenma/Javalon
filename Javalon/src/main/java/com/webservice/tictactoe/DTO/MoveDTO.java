@@ -1,7 +1,10 @@
 package com.webservice.tictactoe.DTO;
 
 import com.webservice.tictactoe.enums.GameStatus;
+import com.webservice.tictactoe.enums.MoveData;
+import com.webservice.tictactoe.enums.MoveEvent;
 import com.webservice.tictactoe.enums.Piece;
+import com.webservice.tictactoe.enums.Character;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,10 +18,11 @@ import java.util.Date;
 @NoArgsConstructor
 public class MoveDTO {
 
-    private int boardColumn;
-    private int boardRow;
+    private MoveEvent moveEvent;
+    private MoveData moveData;
     private Date created;
     private String userName;
     private GameStatus gameStatus;
+    private Character playerCharacterCode;
     private Piece playerPieceCode;
 }

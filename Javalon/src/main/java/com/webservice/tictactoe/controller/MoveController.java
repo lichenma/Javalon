@@ -43,11 +43,11 @@ public class MoveController {
     public Move createMove(@RequestBody CreateMoveDTO createMoveDTO) {
 
         Long gameId = (Long) httpSession.getAttribute("gameId");
-        logger.info("Move to Insert: " + createMoveDTO.getBoardColumn() + createMoveDTO.getBoardRow());
+        //logger.info("Move to Insert: " + createMoveDTO.getBoardColumn() + createMoveDTO.getBoardRow());
 
         Move move = moveService.createMove(gameService.getGame(gameId), playerService.getLoggedUser(), createMoveDTO);
         Game game = gameService.getGame(gameId);
-        gameService.updateGameStatus(gameService.getGame(gameId), moveService.checkCurrentGameStatus(game));
+        //gameService.updateGameStatus(gameService.getGame(gameId), moveService.checkCurrentGameStatus(game));
 
         return move;
     }
@@ -60,7 +60,7 @@ public class MoveController {
 
         Move move = moveService.autoCreateMove(gameService.getGame(gameId));
         Game game = gameService.getGame(gameId);
-        gameService.updateGameStatus(gameService.getGame(gameId), moveService.checkCurrentGameStatus(game));
+        //gameService.updateGameStatus(gameService.getGame(gameId), moveService.checkCurrentGameStatus(game));
 
         return move;
     }
@@ -72,13 +72,13 @@ public class MoveController {
         return moveService.getMovesInGame(gameService.getGame(gameId));
     }
 
-    @RequestMapping(value = "/check", method = RequestMethod.GET)
-    public List<Position> validateMove() {
-
-        Long gameId = (Long) httpSession.getAttribute("gameId");
-        return moveService.getPlayerMovePositionsInGame(gameService.getGame(gameId), playerService.getLoggedUser());
-    }
-
+//    @RequestMapping(value = "/check", method = RequestMethod.GET)
+//    public List<Position> validateMove() {
+//
+//        Long gameId = (Long) httpSession.getAttribute("gameId");
+//        return moveService.getPlayerMovePositionsInGame(gameService.getGame(gameId), playerService.getLoggedUser());
+//    }
+//
     @RequestMapping(value = "/turn", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public boolean isPlayerTurn() {
 

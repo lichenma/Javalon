@@ -9,6 +9,7 @@ import com.webservice.tictactoe.domain.Position;
 import com.webservice.tictactoe.enums.GameStatus;
 import com.webservice.tictactoe.enums.GameType;
 import com.webservice.tictactoe.enums.Piece;
+import com.webservice.tictactoe.enums.Character;
 import com.webservice.tictactoe.repository.MoveRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,8 +34,8 @@ public class MoveService {
     public Move createMove(Game game, Player player, CreateMoveDTO createMoveDTO) {
 
         Move move = new Move();
-        move.setMoveEvent(createMoveDTO.getBoardColumn());
-        move.setBoardRow(createMoveDTO.getBoardRow());
+        move.setMoveEvent(createMoveDTO.getMoveEvent());
+        move.setMoveData(createMoveDTO.getMoveData());
         move.setCreated(new Date());
         move.setPlayer(player);
         move.setGame(game);
@@ -45,10 +46,11 @@ public class MoveService {
     }
 
     public Move autoCreateMove(Game game) {
+        //TODO Don't know if I even want to implement an anutoCreate Move Since it is probably gonna be tragic - Might try in future
 
         Move move= new Move();
-        move.setBoardColumn(GameLogic.nextAutoMove(getTakenMovePositionsInGame(game)).getBoardColumn());
-        move.setBoardRow(GameLogic.nextAutoMove(getTakenMovePositionsInGame(game)).getBoardRow());
+        //move.setBoardColumn(GameLogic.nextAutoMove(getTakenMovePositionsInGame(game)).getBoardColumn());
+        //move.setBoardRow(GameLogic.nextAutoMove(getTakenMovePositionsInGame(game)).getBoardRow());
         move.setCreated(new Date());
         move.setPlayer(null);
         move.setGame(game);
@@ -58,57 +60,57 @@ public class MoveService {
         return move;
     }
 
-    public GameStatus checkCurrentGameStatus(Game game) {
-
-        if (GameLogic.isWinner(getPlayerMovePositionsInGame(game, game.getFirstPlayer()))) {
-            return GameStatus.FIRST_PLAYER_WON;
-        } else if (GameLogic.isWinner(getPlayerMovePositionsInGame(game, game.getSecondPlayer()))){
-            return GameStatus.SECOND_PLAYER_WON;
-        } else if (GameLogic.boardIsFull(getTakenMovePositionsInGame(game))) {
-            return GameStatus.TIE;
-        } else if (game.getGameType() == GameType.COMPETITION && game.getSecondPlayer() == null) {
-            return GameStatus.WAITS_FOR_PLAYER;
-        } else {
-            return GameStatus.IN_PROGRESS;
-        }
-    }
+//    public GameStatus checkCurrentGameStatus(Game game) {
+//
+//        if (GameLogic.isWinner(getPlayerMovePositionsInGame(game, game.getFirstPlayer()))) {
+//            return GameStatus.FIRST_PLAYER_WON;
+//        } else if (GameLogic.isWinner(getPlayerMovePositionsInGame(game, game.getSecondPlayer()))){
+//            return GameStatus.SECOND_PLAYER_WON;
+//        } else if (GameLogic.boardIsFull(getTakenMovePositionsInGame(game))) {
+//            return GameStatus.TIE;
+//        } else if (game.getGameType() == GameType.SIX && game.getSecondPlayer() == null) {
+//            return GameStatus.WAITS_FOR_PLAYER;
+//        } else {
+//            return GameStatus.IN_PROGRESS;
+//        }
+//    }
 
     public List<MoveDTO> getMovesInGame(Game game) {
 
         List<Move> movesInGame = moveRepository.findByGame(game);
         List<MoveDTO> moves = new ArrayList<>();
-        Piece currentPiece = game.getFirstPlayerPieceCode();
+        Character currentCharacter = game.getFirstPlayerCharacter();
 
         for (Move move: movesInGame) {
 
             MoveDTO moveDTO = new MoveDTO();
-            moveDTO.setBoardColumn(move.getBoardColumn());
-            moveDTO.setBoardRow(move.getBoardRow());
+            moveDTO.setMoveData(move.getMoveData());
+            moveDTO.setMoveEvent(move.getMoveEvent());
             moveDTO.setCreated(move.getCreated());
             moveDTO.setGameStatus(move.getGame().getGameStatus());
-            moveDTO.setUserName(move.getPlayer() == null ? GameType.COMPUTER.toString() : move.getPlayer().getUserName());
-            moveDTO.setPlayerPieceCode(currentPiece);
+            moveDTO.setUserName(move.getPlayer().getUserName());
+            moveDTO.setPlayerCharacterCode(currentCharacter);
             moves.add(moveDTO);
 
-            currentPiece = currentPiece == Piece.X ? Piece.O : Piece.X;
+            currentCharacter = game.getSecondPlayerCharacter();
         }
 
         return moves;
     }
 
-    public List<Position> getTakenMovePositionsInGame(Game game) {
+//    public List<Position> getTakenMovePositionsInGame(Game game) {
+//
+////        return moveRepository.findByGame(game).stream()
+////                .map(move -> new Position(move.getBoardRow(), move.getBoardColumn()))
+////                .collect(Collectors.toList());
+//    }
 
-        return moveRepository.findByGame(game).stream()
-                .map(move -> new Position(move.getBoardRow(), move.getBoardColumn()))
-                .collect(Collectors.toList());
-    }
-
-    public List<Position> getPlayerMovePositionsInGame(Game game, Player player) {
-
-        return moveRepository.findByGameAndPlayer(game, player).stream()
-                .map(move -> new Position(move.getBoardRow(), move.getBoardColumn()))
-                .collect(Collectors.toList());
-    }
+//    public List<Position> getPlayerMovePositionsInGame(Game game, Player player) {
+//
+////        return moveRepository.findByGameAndPlayer(game, player).stream()
+////                .map(move -> new Position(move.getBoardRow(), move.getBoardColumn()))
+////                .collect(Collectors.toList());
+//    }
 
     public int getNumberOfPlayerMovesInGame(Game game, Player player) {
 

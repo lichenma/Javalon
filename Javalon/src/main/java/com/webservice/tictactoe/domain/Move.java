@@ -1,5 +1,7 @@
 package com.webservice.tictactoe.domain;
 
+import com.webservice.tictactoe.enums.MoveData;
+import com.webservice.tictactoe.enums.MoveEvent;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

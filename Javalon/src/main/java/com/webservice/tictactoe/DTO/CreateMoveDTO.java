@@ -1,5 +1,7 @@
 package com.webservice.tictactoe.DTO;
 
+import com.webservice.tictactoe.enums.MoveData;
+import com.webservice.tictactoe.enums.MoveEvent;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +15,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class CreateMoveDTO {
     @NotNull
-    int boardRow;
+    MoveData moveData;
     @NotNull
-    int boardColumn;
+    MoveEvent moveEvent;
 }

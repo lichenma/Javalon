@@ -33,7 +33,7 @@ public class MoveService {
     public Move createMove(Game game, Player player, CreateMoveDTO createMoveDTO) {
 
         Move move = new Move();
-        move.setBoardColumn(createMoveDTO.getBoardColumn());
+        move.setMoveEvent(createMoveDTO.getBoardColumn());
         move.setBoardRow(createMoveDTO.getBoardRow());
         move.setCreated(new Date());
         move.setPlayer(player);

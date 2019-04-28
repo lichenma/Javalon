@@ -103,7 +103,7 @@ a:after { /* Just to add a shadow to the navigation bar*/
     border-right: 1px dotted black;
 }
 
-.tableContainer {
+.gameContainer {
     width: 75%;
     padding-bottom: 75%;
     margin: 0 auto;
@@ -118,13 +118,15 @@ a:after { /* Just to add a shadow to the navigation bar*/
     z-index: 10;
 }
 
-.gametable {
+.gameboard {
     position: absolute;
     left: 10px;
     right: 10px;
     top: 10px;
     bottom: 10px;
-    background-image: url("../images/six_player.png")
+    background-image: url("../images/six_player.png");
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 .tablerow {

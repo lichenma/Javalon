@@ -75,6 +75,8 @@ public class GameService {
     }
 
     public Game joinGame(Player player, GameDTO gameDTO) {
+        //TODO incorportate game type into the create game logic
+
         Game game = getGame((long)gameDTO.getId());
         EnumMap<Character, Integer> enumMap= new EnumMap<Character, Integer>(Character.class);
         enumMap.put(Character.MERLIN, 1);
@@ -82,29 +84,46 @@ public class GameService {
         enumMap.put(Character.PERCIVAL, 3);
         enumMap.put(Character.VILLAGER, 4);
         enumMap.put(Character.MORGANA, 5);
+        enumMap.put(Character.VILLAGER, 6);
 
         if (game.getSecondPlayer()==null){
             game.setSecondPlayer(player);
             enumMap.remove(game.getFirstPlayerCharacter());
-
-            Random rand = new Random();
-            int n = rand.nextInt(5);
-            n++;
-
-            while (!enumMap.containsValue(n)){
-                n = (n+1)%5;
-            }
-
-            for (Character character : enumMap.keySet()){
-                if (enumMap.get(character)==n){
-                    game.setSecondPlayerCharacter(character);
-                }
-            }
+            game.setSecondPlayerCharacter(getNewCharacter(enumMap));
             gameRepository.save(game);
-        } else if (game.getThirdPlayer()==null)
-
-        updateGameStatus(game, GameStatus.IN_PROGRESS);
-
+        } else if (game.getThirdPlayer()==null) {
+            game.setThirdPlayer(player);
+            enumMap.remove(game.getFirstPlayerCharacter());
+            enumMap.remove(game.getSecondPlayerCharacter());
+            game.setThirdPlayerCharacter(getNewCharacter(enumMap));
+            gameRepository.save(game);
+        } else if (game.getFourthPlayer()==null) {
+            game.setFourthPlayer(player);
+            enumMap.remove(game.getFirstPlayerCharacter());
+            enumMap.remove(game.getSecondPlayerCharacter());
+            enumMap.remove(game.getThirdPlayerCharacter());
+            game.setFourthPlayerCharacter(getNewCharacter(enumMap));
+            gameRepository.save(game);
+        } else if (game.getFifthPlayer()==null) {
+            game.setFifthPlayer(player);
+            enumMap.remove(game.getFirstPlayerCharacter());
+            enumMap.remove(game.getSecondPlayerCharacter());
+            enumMap.remove(game.getThirdPlayerCharacter());
+            enumMap.remove(game.getFourthPlayerCharacter());
+            game.setFifthPlayerCharacter(getNewCharacter(enumMap));
+            gameRepository.save(game);
+        } else if (game.getSixthPlayer()==null) {
+            game.setSixthPlayer(player);
+            enumMap.remove(game.getFirstPlayerCharacter());
+            enumMap.remove(game.getSecondPlayerCharacter());
+            enumMap.remove(game.getThirdPlayerCharacter());
+            enumMap.remove(game.getFourthPlayerCharacter());
+            enumMap.remove(game.getFifthPlayerCharacter());
+            game.setSixthPlayerCharacter(getNewCharacter(enumMap));
+            updateGameStatus(game, GameStatus.IN_PROGRESS);
+        } else {
+            // something went wrong
+        }
         return game;
     }
 
@@ -115,5 +134,25 @@ public class GameService {
 
     public Game getGame(Long id) {
         return gameRepository.findById(id).orElseThrow(()->new EntityNotFoundException());
+    }
+
+    private Character getNewCharacter (EnumMap<Character,Integer> enumMap){
+        Random rand = new Random();
+        int n = rand.nextInt(6);
+        n++;
+
+        while (!enumMap.containsValue(n)){
+            n +=1;
+            if (n==7){
+                n=1;
+            }
+        }
+
+        for (Character character : enumMap.keySet()){
+            if (enumMap.get(character)==n){
+                return character;
+            }
+        }
+        return null;
     }
 }

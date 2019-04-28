@@ -159,3 +159,28 @@ function sleep(ms) {
 messageForm.addEventListener('submit', sendMessage, true);
 //messageForm.addEventListener('submit', connect, true);
 connect();
+
+
+function showCharacter() {
+    const Url = '/player/logged'; 
+    console.log(Url);
+    $.ajax({
+        url: Url,
+        type:"GET",
+        success: function(data){
+            username=data.object.userName;
+
+            if(username){
+
+                //usernamePage.classList.add('hidden');
+                //gamePage.classList.remove('hidden');
+                var socket = new SockJS('/ws');
+                stompClient = Stomp.over(socket);
+                stompClient.connect({}, onConnected, onError);
+            }
+        },
+        error: function(error){
+            console.log(`Error ${error}`);
+        }
+    })
+}

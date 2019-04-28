@@ -118,7 +118,7 @@ a:after { /* Just to add a shadow to the navigation bar*/
     z-index: 10;
 }
 
-.gameboard {
+.gameBoard {
     position: absolute;
     left: 10px;
     right: 10px;

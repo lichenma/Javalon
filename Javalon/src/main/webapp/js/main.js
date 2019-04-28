@@ -162,8 +162,8 @@ connect();
 
 
 function showCharacter() {
-    var Url= window.location.href;
-    Id = Url.substring(Url.lastIndexOf("/")+1, Url.length);
+    var page= window.location.href;
+    Id = page.substring(page.lastIndexOf("/")+1, page.length);
     const Url = '/game/character/'+Id; 
     console.log(Url);
     $.ajax({

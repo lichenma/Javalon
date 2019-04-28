@@ -162,21 +162,18 @@ connect();
 
 
 function showCharacter() {
-    const Url = '/player/logged'; 
+    var Url= window.location.href;
+    Id = Url.substring(Url.lastIndexOf("/")+1, Url.length);
+    const Url = '/game/character/'+Id; 
     console.log(Url);
     $.ajax({
         url: Url,
         type:"GET",
         success: function(data){
-            username=data.object.userName;
-
-            if(username){
-
-                //usernamePage.classList.add('hidden');
-                //gamePage.classList.remove('hidden');
-                var socket = new SockJS('/ws');
-                stompClient = Stomp.over(socket);
-                stompClient.connect({}, onConnected, onError);
+            var character = data;
+            console.log(data);
+            if(character){
+                console.log(character);
             }
         },
         error: function(error){

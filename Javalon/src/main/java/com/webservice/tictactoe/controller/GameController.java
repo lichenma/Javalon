@@ -2,6 +2,7 @@ package com.webservice.tictactoe.controller;
 
 import com.webservice.tictactoe.DTO.GameDTO;
 import com.webservice.tictactoe.domain.Game;
+import com.webservice.tictactoe.enums.Character;
 import com.webservice.tictactoe.service.GameService;
 import com.webservice.tictactoe.service.PlayerService;
 import org.slf4j.Logger;
@@ -37,6 +38,11 @@ public class GameController {
         logger.info("New Game Id: " + httpSession.getAttribute("gameId") + " stored in session");
 
         return game;
+    }
+
+    @RequestMapping(value = "/character/{id}", method = RequestMethod.GET)
+    public Character getCharacter(@PathVariable Long id) {
+        return gameService.getCharacter(playerService.getLoggedUser(),id);
     }
 
     @RequestMapping(value = "/list", produces = MediaType.APPLICATION_JSON_VALUE)

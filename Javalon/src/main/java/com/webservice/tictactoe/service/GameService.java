@@ -136,6 +136,25 @@ public class GameService {
         return gameRepository.findById(id).orElseThrow(()->new EntityNotFoundException());
     }
 
+    public Character getCharacter(Player player, Long id){
+        Game game = getGame(id);
+        if (game.getFirstPlayer()==player){
+            return game.getFirstPlayerCharacter();
+        } else if (game.getSecondPlayer()==player){
+            return game.getSecondPlayerCharacter();
+        } else if (game.getThirdPlayer()==player){
+            return game.getThirdPlayerCharacter();
+        } else if (game.getFourthPlayer()==player){
+            return game.getFourthPlayerCharacter();
+        } else if (game.getFifthPlayer()==player){
+            return game.getFifthPlayerCharacter();
+        } else if (game.getSixthPlayer()==player){
+            return game.getSixthPlayerCharacter();
+        } else {
+            return null;
+        }
+    }
+
     private Character getNewCharacter (EnumMap<Character,Integer> enumMap){
         Random rand = new Random();
         int n = rand.nextInt(6);

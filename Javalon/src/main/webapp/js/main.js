@@ -289,16 +289,25 @@ function showCharacter() {
                     captionText.innerHTML = "Members of Team Evil: " + firstDisplay + " " + secondDisplay;
                 } else if (character == "ASSASSIN") {
                     modalImg.src = "../images/Assassin.jpg";
-                    captionText.innerHTML = "Try to Find and Murder Merlin";
+                    captionText.innerHTML = "Try to Find and Murder Merlin <br> Members of Team Evil: " + assassin;
                 } else if (character == "MORGANA") {
                     modalImg.src = "../images/Morgana.png";
-                    captionText.innerHTML = "You should see this";
+                    captionText.innerHTML = "Try to Find and Murder Merlin <br> Members of Team Evil: " + morgana;
                 } else if (character == "VILLAGER") {
                     modalImg.src = "../images/Villager.jpg";
                     captionText.innerHTML = "Ignorance is Bliss";
                 } else if (character == "PERCIVAL") {
+                    // need to randomize 
+                    if (Math.floor((Math.random() * 2) + 1)==1){
+                        firstDisplay = merlin;
+                        secondDisplay = morgana;
+                    } else {
+                        firstDisplay = morgana;
+                        secondDisplay = merlin;
+                    }
+
                     modalImg.src = "../images/Percival.png";
-                    captionText.innerHTML = "You should see this";
+                    captionText.innerHTML = "Try to Protect Merlin <br> People who may be Merlin or Percival: " + firstDisplay + " " + secondDisplay;
                 } else {
                     // something went wrong
                 }

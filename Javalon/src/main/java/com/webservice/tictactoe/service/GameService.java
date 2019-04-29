@@ -73,6 +73,9 @@ public class GameService {
             game.setSecondPlayer(player);
             enumMap.remove(game.getFirstPlayerCharacter());
             game.setSecondPlayerCharacter(getNewCharacter(enumMap));
+
+            //TODO ADDED THIS FOR TESTING PURPOSES PLEASE REMOVE THIS FOR PRODUCTION
+            updateGameStatus(game, GameStatus.IN_PROGRESS);
             gameRepository.save(game);
         } else if (game.getThirdPlayer()==null) {
             game.setThirdPlayer(player);

@@ -251,10 +251,19 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                 // number of players have joined the game and that we will commence
                 // once everyone has opened up their character modals 
                 
+                showSnackbar();
+                
+                // initiate team selection with the first player- keep the button for 
+                // displaying player characters 
 
-                // logic for checking if everyone has opened up their character display
+                initiateTeamSelection(scope.firstPlayer);
 
+            }
 
+            scope.initiateTeamSelection=function(player){
+                var initiatePlayer = player;
+                var initiateTeam = []; 
+                
             }
 
 

@@ -121,6 +121,7 @@ public class GameService {
             enumMap.remove(game.getFifthPlayerCharacter());
             game.setSixthPlayerCharacter(getNewCharacter(enumMap));
             updateGameStatus(game, GameStatus.IN_PROGRESS);
+            gameRepository.save(game);
         } else {
             // something went wrong
         }

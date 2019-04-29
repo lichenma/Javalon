@@ -22,6 +22,13 @@ public class DataLoader implements ApplicationRunner {
         playerRepository.save(new Player("admin", "lichenma123@gmail.com", passwordEncoder.encode("password")));
         playerRepository.save(new Player("lma", "lichenma@gmail.com", passwordEncoder.encode("password")));
         playerRepository.save(new Player("jli", "lichenma12@gmail.com", passwordEncoder.encode("password")));
+        playerRepository.save(new Player("player1", "lichenma1@gmail.com", passwordEncoder.encode("password")));
+        playerRepository.save(new Player("player2", "lichenma2@gmail.com", passwordEncoder.encode("password")));
+        playerRepository.save(new Player("player3", "lichenma3@gmail.com", passwordEncoder.encode("password")));
+        playerRepository.save(new Player("player4", "lichenma4@gmail.com", passwordEncoder.encode("password")));
+        playerRepository.save(new Player("player5", "lichenma5@gmail.com", passwordEncoder.encode("password")));
+        playerRepository.save(new Player("player6", "lichenma6@gmail.com", passwordEncoder.encode("password")));
+        
         System.out.println("============= Initialized database =========");
     }
 }

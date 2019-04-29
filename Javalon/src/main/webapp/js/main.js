@@ -336,10 +336,12 @@ function showSnackbar() {
     x.className = "show";
   
     // After 3 seconds, remove the show class from DIV
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 15000);
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 
 function hideSnackbar() {
+    //TODO this can cause issues because the timeout is not stopped and this 
+    //immediately causes the snackbar to disappear - fix later 
     var x = document.getElementById("snackbar");
     x.className=x.className.replace("show","");
 }

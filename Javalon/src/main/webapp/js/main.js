@@ -192,6 +192,8 @@ function showCharacter() {
                 
                 // currently finding the player roles is done client side
                 var scope=angular.element(document.getElementById('game-page')).scope();
+                scope = scope.gameProperties;
+                console.log(scope);
                 var merlin = null; 
                 var assassin = null; 
                 var villager = null; 

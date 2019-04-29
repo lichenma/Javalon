@@ -288,13 +288,13 @@ function showCharacter() {
                         secondDisplay = morgana;
                     }
                     
-                    captionText.innerHTML = "Members of Team Evil: " + firstDisplay + " " + secondDisplay;
+                    captionText.innerHTML = "Members of Team Evil: <strong>" + firstDisplay + " " + secondDisplay + "</strong>";
                 } else if (character == "ASSASSIN") {
                     modalImg.src = "../images/Assassin.jpg";
-                    captionText.innerHTML = "Try to Find and Murder Merlin <br> Members of Team Evil: " + assassin;
+                    captionText.innerHTML = "Try to Find and Assassinate Merlin <br> Members of Team Evil: <strong>" + morgana + "</strong";
                 } else if (character == "MORGANA") {
                     modalImg.src = "../images/Morgana.png";
-                    captionText.innerHTML = "Try to Find and Murder Merlin <br> Members of Team Evil: " + morgana;
+                    captionText.innerHTML = "Try to Trick Percival into Thinking you are Merlin <br> Members of Team Evil: <strong>" + assassin + "</strong>";
                 } else if (character == "VILLAGER") {
                     modalImg.src = "../images/Villager.jpg";
                     captionText.innerHTML = "Ignorance is Bliss";
@@ -309,7 +309,7 @@ function showCharacter() {
                     }
 
                     modalImg.src = "../images/Percival.png";
-                    captionText.innerHTML = "Try to Protect Merlin <br> People who may be Merlin or Percival: " + firstDisplay + " " + secondDisplay;
+                    captionText.innerHTML = "Try to Protect Merlin <br> People who may be Merlin or Morgana: <strong>" + firstDisplay + " " + secondDisplay + "</strong>";
                 } else {
                     // something went wrong
                 }

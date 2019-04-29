@@ -317,6 +317,10 @@ button.accent {
     }
 }
 
+strong {
+    color: red;
+}
+
 @media screen and (max-width: 730px) {
 
     .chat-container {

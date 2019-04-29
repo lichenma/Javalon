@@ -6,6 +6,19 @@ var messageArea = document.querySelector('#messageArea');
 var usernamePage = document.querySelector('#username-page');
 var gamePage = document.querySelector('#game-page');
 
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() { 
+  modal.style.display = "none";
+}
+
+
 var stompClient = null;
 var username=null;
 var Id=null;
@@ -171,13 +184,35 @@ function showCharacter() {
         type:"GET",
         success: function(data){
             var character = data;
-            console.log(data);
             if(character){
-                console.log(character);
+                // Handle the logic for displaying the character 
+                modal.style.display = "block";
+                if (character == "MERLIN") {
+                    modalImg.src = "../images/Merlin.jpg";
+                    captionText.innerHTML = "You should see this";
+                } else if (character == "ASSASSIN") {
+                    modalImg.src = "../images/Assassin.jpg";
+                    captionText.innerHTML = "Try to Find and Murder Merlin";
+                } else if (character == "MORGANA") {
+                    modalImg.src = "../images/Morgana.png";
+                    captionText.innerHTML = "You should see this";
+                } else if (character == "VILLAGER") {
+                    modalImg.src = "../images/Villager.jpg";
+                    captionText.innerHTML = "Ignorance is Bliss";
+                } else if (character == "PERCIVAL") {
+                    modalImg.src = "../images/Percival.png";
+                    captionText.innerHTML = "You should see this";
+                } else {
+                    // something went wrong
+                }
             }
         },
         error: function(error){
             console.log(`Error ${error}`);
         }
     })
+}
+
+function hideCharacter() {
+    modal.style.display = "none";
 }

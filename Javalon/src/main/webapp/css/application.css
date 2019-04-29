@@ -104,10 +104,11 @@ a:after { /* Just to add a shadow to the navigation bar*/
 }
 
 .gameContainer {
-    width: 75%;
     padding-bottom: 75%;
     margin: 0 auto;
     position: relative;
+    margin-left: 0px;
+    margin-right: 0px
 }
 
 .messageContainer {

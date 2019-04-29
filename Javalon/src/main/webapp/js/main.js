@@ -313,8 +313,7 @@ function showCharacter() {
                 } else if (character == "VILLAGER_1") {
                     modalImg.src = "../images/Villager_1.png";
                     captionText.innerHTML = "Ignorance is Bliss";
-                } 
-                else {
+                } else {
                     // something went wrong
                 }
             }

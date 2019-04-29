@@ -243,6 +243,21 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                 });
             };
 
+
+
+            scope.startGame=function(){
+
+                // want to start off by displaying a snack bar saying that the needed
+                // number of players have joined the game and that we will commence
+                // once everyone has opened up their character modals 
+                
+
+                // logic for checking if everyone has opened up their character display
+
+
+            }
+
+
             scope.update= async function() {
                 await sleep(300);
                 http.get('/move/list').then(function (response) {
@@ -274,6 +289,9 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                     gameStatus = scope.gameProperties.gameStatus;
                     console.log(response.data);
                     console.log("above");
+                    if (gameStatus=="IN_PROGRESS") {
+                        startGame();
+                    }
                 }).catch(function (response) {
                     scope.errorMessage = "Failed to load game properties";
                 });

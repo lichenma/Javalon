@@ -191,10 +191,102 @@ function showCharacter() {
                 // Handle the logic for displaying the character
                 
                 // currently finding the player roles is done client side
+                var scope=angular.element(document.getElementById('game-page')).scope();
+                var merlin = null; 
+                var assassin = null; 
+                var villager = null; 
+                var morgana = null; 
+                var percival = null; 
+
+                if (scope.firstPlayerCharacter=="MERLIN"){
+                    merlin = scope.firstPlayer.userName;     
+                } else if (scope.firstPlayerCharacter=="ASSASSIN"){
+                    assassin = scope.firstPlayer.userName;
+                } else if (scope.firstPlayerCharacter=="VILLAGER"){
+                    villager = scope.firstPlayer.userName;
+                } else if (scope.firstPlayerCharacter=="MORGANA"){
+                    morgana = scope.firstPlayer.userName;
+                } else if (scope.firstPlayerCharacter=="PERCIVAL"){
+                    percival = scope.firstPlayer.userName;
+                }
+                
+                if (scope.secondPlayerCharacter=="MERLIN"){
+                    merlin = scope.secondPlayer.userName;     
+                } else if (scope.secondPlayerCharacter=="ASSASSIN"){
+                    assassin = scope.secondPlayer.userName;
+                } else if (scope.secondPlayerCharacter=="VILLAGER"){
+                    villager = scope.secondPlayer.userName;
+                } else if (scope.secondPlayerCharacter=="MORGANA"){
+                    morgana = scope.secondPlayer.userName;
+                } else if (scope.secondPlayerCharacter=="PERCIVAL"){
+                    percival = scope.secondPlayer.userName;
+                }
+
+                if (scope.thirdPlayerCharacter=="MERLIN"){
+                    merlin = scope.thirdPlayer.userName;     
+                } else if (scope.thirdPlayerCharacter=="ASSASSIN"){
+                    assassin = scope.thirdPlayer.userName;
+                } else if (scope.thirdPlayerCharacter=="VILLAGER"){
+                    villager = scope.thirdPlayer.userName;
+                } else if (scope.thirdPlayerCharacter=="MORGANA"){
+                    morgana = scope.thirdPlayer.userName;
+                } else if (scope.thirdPlayerCharacter=="PERCIVAL"){
+                    percival = scope.thirdPlayer.userName;
+                }
+
+                if (scope.fourthPlayerCharacter=="MERLIN"){
+                    merlin = scope.fourthPlayer.userName;     
+                } else if (scope.fourthPlayerCharacter=="ASSASSIN"){
+                    assassin = scope.fourthPlayer.userName;
+                } else if (scope.fourthPlayerCharacter=="VILLAGER"){
+                    villager = scope.fourthPlayer.userName;
+                } else if (scope.fourthPlayerCharacter=="MORGANA"){
+                    morgana = scope.fourthPlayer.userName;
+                } else if (scope.fourthPlayerCharacter=="PERCIVAL"){
+                    percival = scope.fourthPlayer.userName;
+                }
+
+                if (scope.fifthPlayerCharacter=="MERLIN"){
+                    merlin = scope.fifthPlayer.userName;     
+                } else if (scope.fifthPlayerCharacter=="ASSASSIN"){
+                    assassin = scope.fifthPlayer.userName;
+                } else if (scope.fifthPlayerCharacter=="VILLAGER"){
+                    villager = scope.fifthPlayer.userName;
+                } else if (scope.fifthPlayerCharacter=="MORGANA"){
+                    morgana = scope.fifthPlayer.userName;
+                } else if (scope.fifthPlayerCharacter=="PERCIVAL"){
+                    percival = scope.fifthPlayer.userName;
+                }
+
+                if (scope.sixthPlayerCharacter=="MERLIN"){
+                    merlin = scope.sixthPlayer.userName;     
+                } else if (scope.sixthPlayerCharacter=="ASSASSIN"){
+                    assassin = scope.sixthPlayer.userName;
+                } else if (scope.sixthPlayerCharacter=="VILLAGER"){
+                    villager = scope.sixthPlayer.userName;
+                } else if (scope.sixthPlayerCharacter=="MORGANA"){
+                    morgana = scope.sixthPlayer.userName;
+                } else if (scope.sixthPlayerCharacter=="PERCIVAL"){
+                    percival = scope.sixthPlayer.userName;
+                }
+
+                //TODO add in a check so that you can only see when gameStatus = IN_PROGRESS
                 modal.style.display = "block";
                 if (character == "MERLIN") {
                     modalImg.src = "../images/Merlin.jpg";
-                    captionText.innerHTML = "You should see this";
+                    var firstDisplay = null;
+                    var secondDisplay = null; 
+
+                    // need to randomize 
+                    if (Math.floor((Math.random() * 2) + 1)==1){
+                        firstDisplay = morgana;
+                        secondDisplay = assassin;
+                    } else {
+                        firstDisplay = assassin;
+                        secondDisplay = morgana;
+                    }
+                    
+                    captionText.innerHTML = "Members of Team Evil: " + firstDisplay + " " + secondDisplay;
                 } else if (character == "ASSASSIN") {
                     modalImg.src = "../images/Assassin.jpg";
                     captionText.innerHTML = "Try to Find and Murder Merlin";

@@ -217,5 +217,5 @@ function showCharacter() {
 }
 
 function hideCharacter() {
-    modal.style.display = "none";
+    //modal.style.display = "none";
 }

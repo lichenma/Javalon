@@ -264,8 +264,8 @@ button.accent {
 .modal-content {
     margin: auto;
     display: block;
-    width: 80%;
-    max-width: 700px;
+    width: 20em;
+    height: auto;
 }
 
 /* Caption of Modal Image (Image Text) - Same Width as the Image */
@@ -293,6 +293,7 @@ button.accent {
 
 /* The Close Button */
 .close {
+    padding-top: 8em;
     position: absolute;
     top: 15px;
     right: 35px;

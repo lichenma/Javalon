@@ -188,7 +188,9 @@ function showCharacter() {
         success: function(data){
             var character = data;
             if(character){
-                // Handle the logic for displaying the character 
+                // Handle the logic for displaying the character
+                
+                // currently finding the player roles is done client side
                 modal.style.display = "block";
                 if (character == "MERLIN") {
                     modalImg.src = "../images/Merlin.jpg";

@@ -273,7 +273,7 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                     scope.gameProperties = response.data;
                     gameStatus = scope.gameProperties.gameStatus;
                     console.log(response.data);
-                    console.log("adbove");
+                    console.log("above");
                 }).catch(function (response) {
                     scope.errorMessage = "Failed to load game properties";
                 });

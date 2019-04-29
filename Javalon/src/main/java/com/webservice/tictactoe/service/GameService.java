@@ -41,21 +41,9 @@ public class GameService {
         // Randomly Selecting Character Role
         /////////////////////////////////////
 
-        Random rand = new Random();
-        int n = rand.nextInt(5); 
-        n++;
-
-        if (n==1){
-            game.setFirstPlayerCharacter(Character.MERLIN);
-        } else if (n==2) {
-            game.setFirstPlayerCharacter(Character.ASSASSIN);
-        } else if (n==3) {
-            game.setFirstPlayerCharacter(Character.PERCIVAL);
-        } else if (n==4) {
-            game.setFirstPlayerCharacter(Character.VILLAGER);
-        } else if (n==5) {
-            game.setFirstPlayerCharacter(Character.MORGANA);
-        }
+        EnumMap<Character, Integer> enumMap = new EnumMap<Character, Integer>(Character.class);
+        enumMap = initializeEnum(enumMap);
+        game.setFirstPlayerCharacter(getNewCharacter(enumMap));
 
         gameRepository.save(game);
 
@@ -79,12 +67,7 @@ public class GameService {
 
         Game game = getGame((long)gameDTO.getId());
         EnumMap<Character, Integer> enumMap= new EnumMap<Character, Integer>(Character.class);
-        enumMap.put(Character.MERLIN, 1);
-        enumMap.put(Character.ASSASSIN, 2);
-        enumMap.put(Character.PERCIVAL, 3);
-        enumMap.put(Character.VILLAGER, 4);
-        enumMap.put(Character.MORGANA, 5);
-        enumMap.put(Character.VILLAGER, 6);
+        enumMap=initializeEnum(enumMap);
 
         if (game.getSecondPlayer()==null){
             game.setSecondPlayer(player);
@@ -174,5 +157,15 @@ public class GameService {
             }
         }
         return null;
+    }
+
+    private EnumMap<Character,Integer> initializeEnum (EnumMap<Character, Integer> enumMap){
+        enumMap.put(Character.MERLIN, 1);
+        enumMap.put(Character.ASSASSIN, 2);
+        enumMap.put(Character.PERCIVAL, 3);
+        enumMap.put(Character.VILLAGER_1, 4);
+        enumMap.put(Character.MORGANA, 5);
+        enumMap.put(Character.VILLAGER, 6);
+        return enumMap;
     }
 }

@@ -310,7 +310,11 @@ function showCharacter() {
 
                     modalImg.src = "../images/Percival.png";
                     captionText.innerHTML = "Try to Protect Merlin <br> People who may be Merlin or Morgana: <strong>" + firstDisplay + " " + secondDisplay + "</strong>";
-                } else {
+                } else if (character == "VILLAGER_1") {
+                    modalImg.src = "../images/Villager_1.png";
+                    captionText.innerHTML = "Ignorance is Bliss";
+                } 
+                else {
                     // something went wrong
                 }
             }

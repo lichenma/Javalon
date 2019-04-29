@@ -5,5 +5,6 @@ public enum Character {
     ASSASSIN, 
     PERCIVAL,
     VILLAGER,
+    VILLAGER_1,
     MORGANA
 }

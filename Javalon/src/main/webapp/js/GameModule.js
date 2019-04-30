@@ -282,14 +282,9 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                         { name: 'naartjie', selected: false }
                     ];
                     
-                    // Get the modal
-                    var modal = document.getElementById('initiateMyModal');
+                    console.log("displaying propose team modal");
+                    showInitiateTeamModal();
 
-                    // Get the image and insert it inside the modal - use its "alt" text as a caption
-                    var modalImg = document.getElementById("initiateImg01");
-                    var captionText = document.getElementById("initiateCaption");
-                    
-                    modal.style.display = "block";
                     // Selected fruits
                     $scope.selection = [];
 

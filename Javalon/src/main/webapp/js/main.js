@@ -6,15 +6,16 @@ var messageArea = document.querySelector('#messageArea');
 var usernamePage = document.querySelector('#username-page');
 var gamePage = document.querySelector('#game-page');
 
-// Get the modal
+// Get the character modal
 var modal = document.getElementById('myModal');
-
-// Get the image and insert it inside the modal - use its "alt" text as a caption
 var modalImg = document.getElementById("img01");
 var captionText = document.getElementById("caption");
-
-// Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
+
+// Get the initiate Team modal 
+var initiateModal = document.getElementById('initiateMyModal');
+var initiateModalImg = document.getElementById("initiateImg01");
+var initiateCaptionText = document.getElementById("initiateCaption");
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() { 
@@ -344,4 +345,12 @@ function hideSnackbar() {
     //immediately causes the snackbar to disappear - fix later 
     var x = document.getElementById("snackbar");
     x.className=x.className.replace("show","");
+}
+
+function showInitiateTeamModal(){
+    modal.style.display = "block";
+}
+
+function hideInitiateTeamModal(){
+    modal.style.display = "none";
 }

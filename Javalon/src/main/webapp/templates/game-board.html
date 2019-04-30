@@ -73,25 +73,17 @@
 	
 </div>
 
+
 <!-- The Modal for Displaying User Character -->
 <div id="myModal" class="modal">
-
-	<!-- The Close Button -->
 	<span class="close">&times;</span>
-
-	<!-- Modal Content (The Image) -->
 	<img class="modal-content" id="img01">
-
-	<!-- Modal Caption (Image Text) -->
 	<div id="caption"></div>
 </div>
 
 
-
 <!-- The Modal for Proposing Teams -->
 <div id="initiateMyModal" class="initiateModal">
-
-	<!-- Modal Content (The Image) -->
 	<img class="initiateModal-content" id="initiateImg01">
 
 	<!-- Checkboxes for Selection -->
@@ -107,20 +99,15 @@
 			<span ng-repeat-start="option in playerList | filter: {checked:true}">{{option.code}} - {{option.name}}</span>
 			<br ng-repeat-end>
 		</div>
-		<input type="submit" id="submit" value="Submit" />
-  	<pre>list={{initiateTeam}}</pre>
+		<input type="submit" id="submit" style="margin-top: 2em;" value="Submit" />
 	</form>
 	<!-- Modal Caption (Image Text) -->
 	<div id="initiateCaption"></div>
 </div>
 
 
-
-<!-- Use a button to open the snackbar -->
-<button onclick="showSnackbar()">Show Snackbar</button>
-
-<!-- The actual snackbar -->
-<div id="snackbar" style="color: #99cc66">All Players Have Joined - The Game Will Commence</div>
+<!-- The snackbar -->
+<div id="snackbar" style="color:lawngreen">All Players Have Joined - The Game Will Commence</div>
 
 
 <!-- Include this part if we want users to set their own username

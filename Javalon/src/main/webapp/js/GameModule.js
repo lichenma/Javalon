@@ -232,7 +232,6 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                                     }
                                     else {
                                         // we are currently handling it using the update function
-                                        
                                         //alert(gameStatus)
                                     }
 
@@ -251,19 +250,13 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
 
 
 
+
             async function startGame(){
 
-                // want to start off by displaying a snack bar saying that the needed
-                // number of players have joined the game and that we will commence
-                // once everyone has opened up their character modals 
-                console.log("showing snackbar");
                 showSnackbar();
-                
                 await sleep(5000);
-                // initiate team selection with the first player- keep the button for 
-                // displaying player characters
-                
-                // setup the number of people on each mission in a scope variable
+
+                // TODO change this value based on the game type
                 scope.missionNumber= [2,3,4,3,4];
 
                 initiateTeamSelection(scope.gameProperties.firstPlayer);
@@ -271,11 +264,9 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
             }
 
             function initiateTeamSelection(player){
+                
                 var initiatePlayer = player;
                 var initiateTeam = []; 
-
-                
-                console.log(scope);
 
                 scope.playerList= [
                     { id: 1, code: scope.gameProperties.firstPlayer.userName, symbol: scope.gameProperties.firstPlayer.userName, name: 'Player'},
@@ -289,17 +280,12 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                 
 
                 if (scope.playerId==initiatePlayer.userName){
-                    console.log("Made it");
-                    // if the current player is the initiating player we want to show
-                    // them the selection choices
                     
-                    // determining the mission number and the number of people to send 
-                    var missionNumber = 6 - scope.missionNumber.length();
-                    scope.missionNumber.shift();
+                    var missionNumber = 6 - scope.missionNumber.length;
+                    var participantNumber = scope.missionNumber.shift();
 
                     //create a modal that has checkboxes and perform form validation 
-                    scope.
-                    showInitiateTeamModal();
+                    showInitiateTeamModal(missionNumber, participantNumber);
                 
                     scope.toggleSelect = function(index) {
                         scope.playerList[index].checked = !scope.playerList[index].checked;
@@ -307,12 +293,13 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
 
 
                     scope.submit = function() {
+
+                        // TODO implement form validation
                         for (var i=0; i<scope.playerList.length; i++) {
                             if (scope.playerList[i].checked == true){
-                                initiateTeam.push(scope.playerList[i].name);
+                                initiateTeam.push(scope.playerList[i].symbol);
                             }
                         }
-                        console.log(initiateTeam);
                     };
                     
                     
@@ -344,7 +331,6 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                 }).catch(function (response) {
                     scope.errorMessage= "Failed to load moves in game"
                 });
-                console.log("made it ---------------------");
                 console.log(scope.movesInGame);
             }
 

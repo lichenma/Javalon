@@ -94,7 +94,7 @@
 	<img class="initiateModal-content" id="initiateImg01">
 
 	<!-- Checkboxes for Selection -->
-	<label ng-repeat="fruit in fruits">
+	<label ng-controller="gameController" ng-repeat="fruit in fruits">
 		<!--
           - Use `value="{{fruit.name}}"` to give the input a real value, in case the form gets submitted
             traditionally
@@ -105,12 +105,7 @@
           - Use `ng-model="fruit.selected"` to utilize two-way-data-binding. Note that `.selected`
             is arbitrary. The property name could be anything and will be created on the object if not present.
         -->
-		<input
-				type="checkbox"
-				name="selectedFruits[]"
-				value="{{fruit.name}}"
-				ng-model="fruit.selected"
-		> {{fruit.name}}
+		<input type="checkbox" name="selectedFruits[]" value="{{fruit.name}}" ng-model="fruit.selected"> {{fruit.name}}
 	</label>
 
 	<!-- Modal Caption (Image Text) -->

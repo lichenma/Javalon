@@ -348,9 +348,9 @@ function hideSnackbar() {
 }
 
 function showInitiateTeamModal(){
-    modal.style.display = "block";
+    initiateModal.style.display = "block";
 }
 
 function hideInitiateTeamModal(){
-    modal.style.display = "none";
+    initiateModal.style.display = "none";
 }

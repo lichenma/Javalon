@@ -245,7 +245,7 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
 
 
 
-            function startGame(){
+            async function startGame(){
 
                 // want to start off by displaying a snack bar saying that the needed
                 // number of players have joined the game and that we will commence
@@ -253,13 +253,14 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                 console.log("showing snackbar");
                 showSnackbar();
                 
+                await sleep(5000);
                 // initiate team selection with the first player- keep the button for 
                 // displaying player characters
                 
                 // setup the number of people on each mission in a scope variable
                 scope.missionNumber= [2,3,4,3,4];
 
-                initiateTeamSelection(scope.firstPlayer);
+                initiateTeamSelection(scope.gameProperties.firstPlayer);
 
             }
 
@@ -269,13 +270,15 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
 
                 
                 console.log(scope);
+
                 if (scope.playerId==initiatePlayer.userName){
+                    console.log("Made it");
                     // if the current player is the initiating player we want to show
                     // them the selection choices
                     
                     //create a modal that has checkboxes and perform form validation 
                     // Fruits
-                    $scope.fruits = [
+                    scope.fruits = [
                         { name: 'apple',    selected: true },
                         { name: 'orange',   selected: false },
                         { name: 'pear',     selected: true },
@@ -283,19 +286,20 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                     ];
                     
                     console.log("displaying propose team modal");
+                    console.log(scope);
                     showInitiateTeamModal();
 
                     // Selected fruits
-                    $scope.selection = [];
+                    scope.selection = [];
 
                     // Helper method to get selected fruits
-                    $scope.selectedFruits = function selectedFruits() {
-                        return filterFilter($scope.fruits, { selected: true });
+                    scope.selectedFruits = function selectedFruits() {
+                        return filterFilter(scope.fruits, { selected: true });
                     };
 
                     // Watch fruits for changes
-                    $scope.$watch('fruits|filter:{selected:true}', function (nv) {
-                        $scope.selection = nv.map(function (fruit) {
+                    scope.$watch('fruits|filter:{selected:true}', function (nv) {
+                        scope.selection = nv.map(function (fruit) {
                         return fruit.name;
                         console.log(fruit.name);
                         });
@@ -303,6 +307,7 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                 } else {
                     // if current player is not initiating player we want to show them
                     // another screen 
+                    console.log("Did not make it");
                 }
             }
 

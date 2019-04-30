@@ -94,20 +94,17 @@
 	<img class="initiateModal-content" id="initiateImg01">
 
 	<!-- Checkboxes for Selection -->
-	<label ng-controller="gameController" ng-repeat="fruit in fruits">
-		<!--
-          - Use `value="{{fruit.name}}"` to give the input a real value, in case the form gets submitted
-            traditionally
-
-          - Use `ng-checked="fruit.selected"` to have the checkbox checked based on some angular expression
-            (no two-way-data-binding)
-
-          - Use `ng-model="fruit.selected"` to utilize two-way-data-binding. Note that `.selected`
-            is arbitrary. The property name could be anything and will be created on the object if not present.
-        -->
-		<input type="checkbox" name="selectedFruits[]" value="{{fruit.name}}" ng-model="fruit.selected"> {{fruit.name}}
-	</label>
-
+	<div class="row">
+		<div class="col-md-6">
+			<h4>selectables</h4>
+			<div class="form-group">
+				<label ng-repeat="fruitName in fruits" class="checkbox-inline">
+					<input type="checkbox" name="selectedFruits[]" value="{{fruitName}}" ng-checked="selection.indexOf(fruitName) > -1" ng-click="toggleSelection(fruitName)"> {{fruitName}}
+				</label>
+			</div>
+		</div>
+	</div>
+	https://stackoverflow.com/questions/14514461/how-do-i-bind-to-list-of-checkbox-values-with-angularjs
 	<!-- Modal Caption (Image Text) -->
 	<div id="initiateCaption"></div>
 </div>

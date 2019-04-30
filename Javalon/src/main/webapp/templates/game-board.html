@@ -99,7 +99,7 @@
 			<span ng-repeat-start="option in playerList | filter: {checked:true}">{{option.code}} - {{option.name}}</span>
 			<br ng-repeat-end>
 		</div>
-		<input type="submit" id="submit" style="margin-top: 2em;" value="Submit" />
+		<input type="submit" id="submit" ng-disabled="checkSelectedNumber()" style="margin-top: 2em;" value="Submit" />
 	</form>
 	<!-- Modal Caption (Image Text) -->
 	<div id="initiateCaption"></div>

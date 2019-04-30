@@ -291,9 +291,7 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                         scope.playerList[index].checked = !scope.playerList[index].checked;
                     };
 
-
                     scope.submit = function() {
-
                         // TODO implement form validation
                         for (var i=0; i<scope.playerList.length; i++) {
                             if (scope.playerList[i].checked == true){
@@ -304,9 +302,7 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                     
                     
                 } else {
-                    // if current player is not initiating player we want to show them
-                    // another screen 
-                    console.log("Did not make it");
+                    // when the current player is waiting for a decision to be made
                 }
             }
 

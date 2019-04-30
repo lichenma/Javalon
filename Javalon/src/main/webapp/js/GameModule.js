@@ -103,8 +103,8 @@ gameModule.controller('playerGamesController', ['$scope', '$http', '$location', 
         }
     }]);
 
-gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope', '$http',
-    function (rootScope, routeParams, scope, http) {
+gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope', '$http', 'filterFilter',
+    function (rootScope, routeParams, scope, http, filterFilter) {
 
         var gameStatus;
         getInitialData()
@@ -254,7 +254,10 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                 showSnackbar();
                 
                 // initiate team selection with the first player- keep the button for 
-                // displaying player characters 
+                // displaying player characters
+                
+                // setup the number of people on each mission in a scope variable
+                scope.missionNumber= [2,3,4,3,4];
 
                 initiateTeamSelection(scope.firstPlayer);
 
@@ -263,7 +266,49 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
             scope.initiateTeamSelection=function(player){
                 var initiatePlayer = player;
                 var initiateTeam = []; 
+
                 
+                console.log(scope);
+                if (scope.playerId==initiatePlayer.userName){
+                    // if the current player is the initiating player we want to show
+                    // them the selection choices
+                    
+                    //create a modal that has checkboxes and perform form validation 
+                    // Fruits
+                    $scope.fruits = [
+                        { name: 'apple',    selected: true },
+                        { name: 'orange',   selected: false },
+                        { name: 'pear',     selected: true },
+                        { name: 'naartjie', selected: false }
+                    ];
+                    
+                    // Get the modal
+                    var modal = document.getElementById('initiateMyModal');
+
+                    // Get the image and insert it inside the modal - use its "alt" text as a caption
+                    var modalImg = document.getElementById("initiateImg01");
+                    var captionText = document.getElementById("initiateCaption");
+                    
+                    modal.style.display = "block";
+                    // Selected fruits
+                    $scope.selection = [];
+
+                    // Helper method to get selected fruits
+                    $scope.selectedFruits = function selectedFruits() {
+                        return filterFilter($scope.fruits, { selected: true });
+                    };
+
+                    // Watch fruits for changes
+                    $scope.$watch('fruits|filter:{selected:true}', function (nv) {
+                        $scope.selection = nv.map(function (fruit) {
+                        return fruit.name;
+                        console.log(fruit.name);
+                        });
+                    }, true);
+                } else {
+                    // if current player is not initiating player we want to show them
+                    // another screen 
+                }
             }
 
 

@@ -87,6 +87,37 @@
 </div>
 
 
+<!-- The Modal for Proposing Teams -->
+<div id="initiateMyModal" class="initiateModal">
+
+	<!-- Modal Content (The Image) -->
+	<img class="initiateModal-content" id="initiateImg01">
+
+	<!-- Checkboxes for Selection -->
+	<label ng-repeat="fruit in fruits">
+		<!--
+          - Use `value="{{fruit.name}}"` to give the input a real value, in case the form gets submitted
+            traditionally
+
+          - Use `ng-checked="fruit.selected"` to have the checkbox checked based on some angular expression
+            (no two-way-data-binding)
+
+          - Use `ng-model="fruit.selected"` to utilize two-way-data-binding. Note that `.selected`
+            is arbitrary. The property name could be anything and will be created on the object if not present.
+        -->
+		<input
+				type="checkbox"
+				name="selectedFruits[]"
+				value="{{fruit.name}}"
+				ng-model="fruit.selected"
+		> {{fruit.name}}
+	</label>
+
+	<!-- Modal Caption (Image Text) -->
+	<div id="initiateCaption"></div>
+</div>
+
+
 
 <!-- Use a button to open the snackbar -->
 <button onclick="showSnackbar()">Show Snackbar</button>

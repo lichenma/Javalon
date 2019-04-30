@@ -87,6 +87,7 @@
 </div>
 
 
+
 <!-- The Modal for Proposing Teams -->
 <div id="initiateMyModal" class="initiateModal">
 
@@ -94,17 +95,21 @@
 	<img class="initiateModal-content" id="initiateImg01">
 
 	<!-- Checkboxes for Selection -->
-	<div class="row">
-		<div class="col-md-6">
-			<h4>selectables</h4>
-			<div class="form-group">
-				<label ng-repeat="fruitName in fruits" class="checkbox-inline">
-					<input type="checkbox" name="selectedFruits[]" value="{{fruitName}}" ng-checked="selection.indexOf(fruitName) > -1" ng-click="toggleSelection(fruitName)"> {{fruitName}}
-				</label>
-			</div>
+	<form novalidate ng-submit="submit()">
+		<h3>Currencies Available</h3>
+		<div class="checkbox checkbox-inline col-sm-4" ng-repeat="currency in currencies">
+			<input type="checkbox" name="currency" id="chk-{{currency.id}}" ng-model="options[$index]" ng-value="currency" ng-change="toggleCurrency($index)">
+			<label for="chk-{{currency.id}}">{{currency.symbol}}</label>
 		</div>
-	</div>
-	https://stackoverflow.com/questions/14514461/how-do-i-bind-to-list-of-checkbox-values-with-angularjs
+		<br>
+		<h3>Currencies Selected</h3>
+		<div>
+			<span ng-repeat-start="option in currencies | filter: {checked:true}">{{option.code}} - {{option.name}}</span>
+			<br ng-repeat-end>
+		</div>
+		<input type="submit" id="submit" value="Submit" />
+  	<pre>list={{list}}</pre>
+	</form>
 	<!-- Modal Caption (Image Text) -->
 	<div id="initiateCaption"></div>
 </div>

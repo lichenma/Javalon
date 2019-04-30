@@ -105,6 +105,15 @@ gameModule.controller('playerGamesController', ['$scope', '$http', '$location', 
 
 gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope', '$http', 'filterFilter',
     function (rootScope, routeParams, scope, http, filterFilter) {
+  
+        scope.currencies = [
+        { id: 1, code: 'BRZ', symbol: 'R$', name: 'Brazilian Real'},
+        { id: 2, code: 'CAD', symbol: 'CAD$', name: 'Canadian Dollar'},
+        { id: 3, code: 'USD', symbol: 'US$', name: 'United States Dollar'},
+        { id: 4, code: 'CNY', symbol: '¥$', name: 'Chinese Yuan'}
+        ];
+    
+        scope.options = [];
 
         var gameStatus;
         getInitialData()
@@ -278,32 +287,25 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                     
                     //create a modal that has checkboxes and perform form validation 
                     // Fruits
-                    scope.fruits = [
-                        { name: 'apple',    selected: true },
-                        { name: 'orange',   selected: false },
-                        { name: 'pear',     selected: true },
-                        { name: 'naartjie', selected: false }
-                    ];
+                
+                    scope.toggleCurrency = function(index) {
+                        scope.currencies[index].checked = !scope.currencies[index].checked;
+                    };
+
+
+                    scope.submit = function() {
+                        for (var i=0; i<scope.currencies.length; i++) {
+                            if (scope.currencies[i].checked == true){
+                                initiateTeam.push(scope.currencies[i].name);
+                            }
+                        }
+                        console.log(initiateTeam);
+                    };
                     
                     console.log("displaying propose team modal");
                     console.log(scope);
                     showInitiateTeamModal();
-
-                    // Selected fruits
-                    scope.selection = [];
-
-                    // Helper method to get selected fruits
-                    scope.selectedFruits = function selectedFruits() {
-                        return filterFilter(scope.fruits, { selected: true });
-                    };
-
-                    // Watch fruits for changes
-                    scope.$watch('fruits|filter:{selected:true}', function (nv) {
-                        scope.selection = nv.map(function (fruit) {
-                        return fruit.name;
-                        console.log(fruit.name);
-                        });
-                    }, true);
+                    
                 } else {
                     // if current player is not initiating player we want to show them
                     // another screen 

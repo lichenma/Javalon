@@ -245,12 +245,12 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
 
 
 
-            scope.startGame=function(){
+            function startGame(){
 
                 // want to start off by displaying a snack bar saying that the needed
                 // number of players have joined the game and that we will commence
                 // once everyone has opened up their character modals 
-                
+                console.log("showing snackbar");
                 showSnackbar();
                 
                 // initiate team selection with the first player- keep the button for 
@@ -263,7 +263,7 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
 
             }
 
-            scope.initiateTeamSelection=function(player){
+            function initiateTeamSelection(player){
                 var initiatePlayer = player;
                 var initiateTeam = []; 
 
@@ -344,6 +344,7 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                     console.log(response.data);
                     console.log("above");
                     if (gameStatus=="IN_PROGRESS") {
+                        console.log("Starting Game");
                         startGame();
                     }
                 }).catch(function (response) {

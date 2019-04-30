@@ -349,6 +349,12 @@ function hideSnackbar() {
 
 function showInitiateTeamModal(){
     initiateModal.style.display = "block";
+    
+    // Add an image if you want
+    //modalImg.src = "../images/Morgana.png";
+    
+    captionText.innerHTML = "";
+                    
 }
 
 function hideInitiateTeamModal(){

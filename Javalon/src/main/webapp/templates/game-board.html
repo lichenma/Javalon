@@ -96,19 +96,19 @@
 
 	<!-- Checkboxes for Selection -->
 	<form novalidate ng-submit="submit()">
-		<h3>Currencies Available</h3>
-		<div class="checkbox checkbox-inline col-sm-4" ng-repeat="currency in currencies">
-			<input type="checkbox" name="currency" id="chk-{{currency.id}}" ng-model="options[$index]" ng-value="currency" ng-change="toggleCurrency($index)">
-			<label for="chk-{{currency.id}}">{{currency.symbol}}</label>
+		<h3>Player List</h3>
+		<div class="checkbox checkbox-inline col-sm-4" ng-repeat="player in playerList">
+			<input type="checkbox" name="player" id="chk-{{player.id}}" ng-model="options[$index]" ng-value="currency" ng-change="toggleSelect($index)">
+			<label for="chk-{{player.id}}">{{player.symbol}}</label>
 		</div>
 		<br>
-		<h3>Currencies Selected</h3>
+		<h3>Players Selected</h3>
 		<div>
-			<span ng-repeat-start="option in currencies | filter: {checked:true}">{{option.code}} - {{option.name}}</span>
+			<span ng-repeat-start="option in playerList | filter: {checked:true}">{{option.code}} - {{option.name}}</span>
 			<br ng-repeat-end>
 		</div>
 		<input type="submit" id="submit" value="Submit" />
-  	<pre>list={{list}}</pre>
+  	<pre>list={{initiateTeam}}</pre>
 	</form>
 	<!-- Modal Caption (Image Text) -->
 	<div id="initiateCaption"></div>

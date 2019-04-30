@@ -106,11 +106,8 @@ gameModule.controller('playerGamesController', ['$scope', '$http', '$location', 
 gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope', '$http', 'filterFilter',
     function (rootScope, routeParams, scope, http, filterFilter) {
   
-        scope.currencies = [
-        { id: 1, code: 'BRZ', symbol: 'R$', name: 'Brazilian Real'},
-        { id: 2, code: 'CAD', symbol: 'CAD$', name: 'Canadian Dollar'},
-        { id: 3, code: 'USD', symbol: 'US$', name: 'United States Dollar'},
-        { id: 4, code: 'CNY', symbol: '¥$', name: 'Chinese Yuan'}
+        scope.playerList = [
+            { id: 1, code: '', symbol: 'Click Here', name: ''}
         ];
     
         scope.options = [];
@@ -280,31 +277,44 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                 
                 console.log(scope);
 
+                scope.playerList= [
+                    { id: 1, code: scope.gameProperties.firstPlayer.userName, symbol: scope.gameProperties.firstPlayer.userName, name: 'Player'},
+                    { id: 2, code: scope.gameProperties.secondPlayer.userName, symbol: scope.gameProperties.secondPlayer.userName, name: 'Player'},
+                    // TODO uncomment for larger games
+                    //{ id: 3, code: scope.gameProperties.thirdPlayer.userName, symbol: scope.gameProperties.thirdPlayer.userName, name: 'Player'},
+                    //{ id: 4, code: scope.gameProperties.fourthPlayer.userName, symbol: scope.gameProperties.fourthPlayer.userName, name: 'Player'},
+                    //{ id: 5, code: scope.gameProperties.fifthPlayer.userName, symbol: scope.gameProperties.fifthPlayer.userName, name: 'Player'},
+                    //{ id: 6, code: scope.gameProperties.sixthPlayer.userName, symbol: scope.gameProperties.sixthPlayer.userName, name: 'Player'}
+                ];
+                
+
                 if (scope.playerId==initiatePlayer.userName){
                     console.log("Made it");
                     // if the current player is the initiating player we want to show
                     // them the selection choices
                     
+                    // determining the mission number and the number of people to send 
+                    var missionNumber = 6 - scope.missionNumber.length();
+                    scope.missionNumber.shift();
+
                     //create a modal that has checkboxes and perform form validation 
-                    // Fruits
+                    scope.
+                    showInitiateTeamModal();
                 
-                    scope.toggleCurrency = function(index) {
-                        scope.currencies[index].checked = !scope.currencies[index].checked;
+                    scope.toggleSelect = function(index) {
+                        scope.playerList[index].checked = !scope.playerList[index].checked;
                     };
 
 
                     scope.submit = function() {
-                        for (var i=0; i<scope.currencies.length; i++) {
-                            if (scope.currencies[i].checked == true){
-                                initiateTeam.push(scope.currencies[i].name);
+                        for (var i=0; i<scope.playerList.length; i++) {
+                            if (scope.playerList[i].checked == true){
+                                initiateTeam.push(scope.playerList[i].name);
                             }
                         }
                         console.log(initiateTeam);
                     };
                     
-                    console.log("displaying propose team modal");
-                    console.log(scope);
-                    showInitiateTeamModal();
                     
                 } else {
                     // if current player is not initiating player we want to show them

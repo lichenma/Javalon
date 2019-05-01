@@ -7,6 +7,8 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.stereotype.Controller;
 
+import javax.websocket.server.PathParam;
+
 @Controller
 public class ChatController {
 
@@ -25,9 +27,10 @@ public class ChatController {
     @MessageMapping("/chat.addUser/{Id}")
     @SendTo("/topic/{Id}")
     public ChatMessage addUser(@Payload ChatMessage chatMessage,
-                               SimpMessageHeaderAccessor headerAccessor) {
+                               SimpMessageHeaderAccessor headerAccessor, @PathParam("id")Long id) {
         // Add username in web socket session
         headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
+        headerAccessor.getSessionAttributes().put("id", id);
         return chatMessage;
     }
 }

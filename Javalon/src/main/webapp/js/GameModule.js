@@ -259,7 +259,7 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                 // TODO change this value based on the game type
                 scope.missionNumber= [2,3,4,3,4];
                 scope.initiatePlayer = scope.gameProperties.firstPlayer;
-                initiateTeamSelection(scope.initatePlayer);
+                initiateTeamSelection(scope.initiatePlayer);
 
             }
 
@@ -317,6 +317,8 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
             function voteTeam(teamMembers){
                 // Display a Modal for all players prompting them to vote on the initiateTeam proposed 
                 scope.votingPool=[]; 
+
+
             }
 
 

@@ -5,6 +5,7 @@ public class ChatMessage {
     private MessageType type;
     private String content;
     private String sender;
+    private String[] players;
 
     public enum MessageType {
 
@@ -22,6 +23,14 @@ public class ChatMessage {
     public void setType(MessageType type) {
 
         this.type = type;
+    }
+
+    public String[] getPlayers(){
+        return players;
+    }
+
+    public void setPlayers(String[] players) {
+        this.players = players;
     }
 
     public String getContent() {

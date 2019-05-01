@@ -39,7 +39,8 @@ public class WebSocketEventListener {
             chatMessage.setType(ChatMessage.MessageType.LEAVE);
             chatMessage.setSender(username);
 
-            messagingTemplate.convertAndSend("/topic/public", chatMessage);
+            Long id = (Long) headerAccessor.getSessionAttributes().get("id");
+            messagingTemplate.convertAndSend("/topic/"+id, chatMessage);
         }
     }
 }

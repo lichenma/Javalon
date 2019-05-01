@@ -1,6 +1,7 @@
 package com.webservice.tictactoe.controller;
 
 import com.webservice.tictactoe.model.ChatMessage;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -27,10 +28,10 @@ public class ChatController {
     @MessageMapping("/chat.addUser/{Id}")
     @SendTo("/topic/{Id}")
     public ChatMessage addUser(@Payload ChatMessage chatMessage,
-                               SimpMessageHeaderAccessor headerAccessor, @PathParam("id")Long id) {
+                               SimpMessageHeaderAccessor headerAccessor, @DestinationVariable Long Id) {
         // Add username in web socket session
         headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
-        headerAccessor.getSessionAttributes().put("id", id);
+        headerAccessor.getSessionAttributes().put("id", Id);
         return chatMessage;
     }
 }

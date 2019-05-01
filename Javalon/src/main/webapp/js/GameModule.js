@@ -258,8 +258,8 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
 
                 // TODO change this value based on the game type
                 scope.missionNumber= [2,3,4,3,4];
-
-                initiateTeamSelection(scope.gameProperties.firstPlayer);
+                scope.initiatePlayer = scope.gameProperties.firstPlayer;
+                initiateTeamSelection(scope.initatePlayer);
 
             }
 
@@ -267,7 +267,8 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                 
                 var initiatePlayer = player;
                 var initiateTeam = []; 
-
+                scope.numChecks = 0;
+                scope.participantNumber= 0;
                 scope.playerList= [
                     { id: 1, code: scope.gameProperties.firstPlayer.userName, symbol: scope.gameProperties.firstPlayer.userName, name: 'Player'},
                     { id: 2, code: scope.gameProperties.secondPlayer.userName, symbol: scope.gameProperties.secondPlayer.userName, name: 'Player'},
@@ -283,27 +284,37 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                     
                     var missionNumber = 6 - scope.missionNumber.length;
                     var participantNumber = scope.missionNumber.shift();
-
+                    scope.participantNumber=participantNumber;
                     //create a modal that has checkboxes and perform form validation 
                     showInitiateTeamModal(missionNumber, participantNumber);
                 
                     scope.toggleSelect = function(index) {
                         scope.playerList[index].checked = !scope.playerList[index].checked;
+                        if (scope.playerList[index].checked==true){
+                            scope.numChecks++;
+                        } else {
+                            scope.numChecks--;
+                        }
                     };
 
                     scope.submit = function() {
-                        // TODO implement form validation
                         for (var i=0; i<scope.playerList.length; i++) {
                             if (scope.playerList[i].checked == true){
                                 initiateTeam.push(scope.playerList[i].symbol);
                             }
                         }
+                        console.log(initiateTeam);
+                        voteTeam(initiateTeam);
                     };
                     
                     
                 } else {
-                    // when the current player is waiting for a decision to be made
+                    // TODO create a temporary loading screen for other players while user makes decision
                 }
+            }
+
+            function voteTeam(teamMembers){
+
             }
 
 

@@ -305,6 +305,7 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                         }
                         console.log(initiateTeam);
                         voteTeam(initiateTeam);
+                        hideInitiateTeamModal();
                     };
                     
                     
@@ -314,7 +315,8 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
             }
 
             function voteTeam(teamMembers){
-
+                // Display a Modal for all players prompting them to vote on the initiateTeam proposed 
+                scope.votingPool=[]; 
             }
 
 

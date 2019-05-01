@@ -257,8 +257,10 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                 await sleep(5000);
 
                 // TODO change this value based on the game type
+                // Global state variables
                 scope.missionNumber= [2,3,4,3,4];
                 scope.initiatePlayer = scope.gameProperties.firstPlayer;
+                scope.votingPool = [];
                 initiateTeamSelection(scope.initiatePlayer);
 
             }
@@ -308,6 +310,7 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                                     {},
                                     JSON.stringify({sender: scope.playerId, type: 'PROPOSE_TEAM', players:initiateTeam}))
                         hideInitiateTeamModal();
+                        
                     };
                     
                     
@@ -316,9 +319,9 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                 }
             }
 
-            function voteTeam(teamMembers){
+            scope.voteTeam(players)= async function(){
                 // Display a Modal for all players prompting them to vote on the initiateTeam proposed 
-                scope.votingPool=[]; 
+                showVotingModal(players);
 
 
             }

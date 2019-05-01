@@ -17,6 +17,11 @@ var initiateModal = document.getElementById('initiateMyModal');
 var initiateModalImg = document.getElementById("initiateImg01");
 var initiateCaptionText = document.getElementById("initiateCaption");
 
+// Get the voting Team modal 
+var votingModal = document.getElementById('votingModal');
+var votingModalImg = document.getElementById("votingImg01");
+var votingCaptionText = document.getElementById("votingCaption");
+
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() { 
   modal.style.display = "none";
@@ -131,9 +136,14 @@ function onMessageReceived(payload) {
         console.log(angular.element(document.getElementById('game-page')).scope());
         angular.element(document.getElementById('game-page')).scope().update();
         angular.element(document.getElementById('game-page')).scope().$apply();
+
     } else if (message.type === "PROPOSE_TEAM"){
         messageElement.classList.add('event-message');
         message.content=message.sender + ' proposed a team: '+message.players;
+
+        angular.element(document.getElementById('game-page')).scope().voteTeam(message.players);
+        angular.element(document.getElementById('game-page')).scope().$apply();
+
     } else {
         messageElement.classList.add('chat-message');
 
@@ -352,4 +362,14 @@ function showInitiateTeamModal(missionNumber, participantNumber){
 
 function hideInitiateTeamModal(){
     initiateModal.style.display = "none";
+}
+
+function showVotingModal(initiateTeam){
+    votingModal.style.display = "block";
+    //initiateModalImg.src = "../images/Morgana.png";
+    votingCaptionText.innerHTML = "The Proposed Team is: " +initiateTeam + " Please Vote";                   
+}
+
+function hideVotingModal(initiateTeam){
+    votingModal.style.display="none";
 }

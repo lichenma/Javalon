@@ -25,6 +25,12 @@ public class ChatController {
         return chatMessage;
     }
 
+    @MessageMapping("/chat.proposeTeam/{Id}")
+    @SendTo("/topic/{Id}")
+    public ChatMessage proposeTeam(@Payload ChatMessage chatMessage) {
+        return chatMessage;
+    }
+
     @MessageMapping("/chat.addUser/{Id}")
     @SendTo("/topic/{Id}")
     public ChatMessage addUser(@Payload ChatMessage chatMessage,

@@ -12,7 +12,8 @@ public class ChatMessage {
         CHAT,
         JOIN,
         LEAVE,
-        MOVE
+        MOVE,
+        PROPOSE_TEAM
     }
 
     public MessageType getType() {

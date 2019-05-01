@@ -304,7 +304,9 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                             }
                         }
                         console.log(initiateTeam);
-                        voteTeam(initiateTeam);
+                        stompClient.send("/app/chat.proposeTeam/"+Id,
+                                    {},
+                                    JSON.stringify({sender: scope.playerId, type: 'PROPOSE_TEAM', players:initiateTeam}))
                         hideInitiateTeamModal();
                     };
                     

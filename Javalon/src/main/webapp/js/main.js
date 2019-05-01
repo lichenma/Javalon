@@ -131,7 +131,9 @@ function onMessageReceived(payload) {
         console.log(angular.element(document.getElementById('game-page')).scope());
         angular.element(document.getElementById('game-page')).scope().update();
         angular.element(document.getElementById('game-page')).scope().$apply();
-
+    } else if (message.type === "PROPOSE_TEAM"){
+        messageElement.classList.add('event-message');
+        message.content=message.sender + ' proposed a team: '+message.players;
     } else {
         messageElement.classList.add('chat-message');
 

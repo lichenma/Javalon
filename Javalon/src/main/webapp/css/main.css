@@ -245,17 +245,17 @@ button.accent {
     width: 100%;
 }
 
-/* The Modal (background) */
+/* The Display Character Modal */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
+    display: none; 
+    position: fixed; 
     z-index: 2; /* Sit on top of other modals as well*/
     padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
+    width: 100%; 
+    height: 100%;
+    overflow: auto; 
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
 }
@@ -291,6 +291,8 @@ button.accent {
     to {transform:scale(1)}
 }
 
+
+
 /* The Close Button */
 .close {
     padding-top: 8em;
@@ -310,6 +312,8 @@ button.accent {
     cursor: pointer;
 }
 
+
+
 /* 100% Image Width on Smaller Screens */
 @media only screen and (max-width: 700px){
     .modal-content {
@@ -321,25 +325,26 @@ strong {
     color: red;
 }
 
+
+
 /* The snackbar - position it at the bottom and in the middle of the screen */
 #snackbar {
-    visibility: hidden; /* Hidden by default. Visible on click */
-    min-width: 250px; /* Set a default minimum width */
+    visibility: hidden; 
+    min-width: 250px; 
     margin-left: -125px; /* Divide value of min-width by 2 */
     background-color: #333; /* Black background color */
-    color: #fff; /* White text color */
-    text-align: center; /* Centered text */
-    border-radius: 2px; /* Rounded borders */
-    padding: 16px; /* Padding */
-    position: fixed; /* Sit on top of the screen */
-    z-index: 1; /* Add a z-index if needed */
-    left: 50%; /* Center the snackbar */
-    bottom: 30px; /* 30px from the bottom */
+    text-align: center; 
+    border-radius: 2px; 
+    padding: 16px; 
+    position: fixed; 
+    z-index: 1; 
+    left: 50%; 
+    bottom: 30px; 
 }
 
-/* Show the snackbar when clicking on a button (class added with JavaScript) */
+/* Show the snackbar - called from Javascript */
 #snackbar.show {
-    visibility: visible; /* Show the snackbar */
+    visibility: visible; 
     /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
     However, delay the fade out process for 2.5 seconds */
     -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
@@ -377,17 +382,17 @@ strong {
 }
 
 
-/* For initiate team modal*/
+/* For Initiate Team Modal*/
 .initiateModal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
+    display: none; 
+    position: fixed; 
     z-index: 2; /* Sit on top of other modals as well*/
     padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
+    width: 100%; 
+    height: 100%; 
+    overflow: auto;
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
 }

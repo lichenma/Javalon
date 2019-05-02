@@ -319,12 +319,12 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                 }
             }
 
-            scope.voteTeam(players)= async function(){
+            scope.voteTeam= async function(players){
                 // Display a Modal for all players prompting them to vote on the initiateTeam proposed 
                 showVotingModal(players);
 
 
-            }
+            };
 
 
             scope.update= async function() {

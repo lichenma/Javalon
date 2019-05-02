@@ -19,7 +19,8 @@ var initiateCaptionText = document.getElementById("initiateCaption");
 
 // Get the voting Team modal 
 var votingModal = document.getElementById('votingModal');
-var votingModalImg = document.getElementById("votingImg01");
+var votingApproveImg = document.getElementById("votingImg01");
+var votingRejectImg = document.getElementById("votingImg02");
 var votingCaptionText = document.getElementById("votingCaption");
 
 // When the user clicks on <span> (x), close the modal
@@ -367,7 +368,9 @@ function hideInitiateTeamModal(){
 function showVotingModal(initiateTeam){
     votingModal.style.display = "block";
     //initiateModalImg.src = "../images/Morgana.png";
-    votingCaptionText.innerHTML = "The Proposed Team is: " +initiateTeam + " Please Vote";                   
+    votingCaptionText.innerHTML = "The Proposed Team is: " +initiateTeam + " Please Vote";
+    votingApproveImg.src = "../images/approve.jpg";
+    votingRejectImg.src="../images/reject.jpg";
 }
 
 function hideVotingModal(initiateTeam){

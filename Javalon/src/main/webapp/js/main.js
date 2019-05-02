@@ -370,9 +370,12 @@ function showVotingModal(initiateTeam){
     //initiateModalImg.src = "../images/Morgana.png";
     votingCaptionText.innerHTML = "The Proposed Team is: " +initiateTeam + " Please Vote";
     votingApproveImg.src = "../images/approve.jpg";
+    votingApproveImg.onclick = "sendApprove()";
     votingRejectImg.src="../images/reject.jpg";
+    votingRejectImg.onclick = "sendReject()";
 }
 
 function hideVotingModal(initiateTeam){
     votingModal.style.display="none";
 }
+

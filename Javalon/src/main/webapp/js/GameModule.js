@@ -349,14 +349,14 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                         //startMission();
                     } else {
                         console.log('Rejected! Adding a failed piece to the board and restarting the voting process');
-
+                        //addFailedPiece();
                     }
 
                     // Resetting the variables 
                     scope.votingPool.length = 0; 
                     scope.rejectPool.length = 0; 
                     scope.approvePool.length = 0; 
-                    scope.playerList.length = 0; 
+                    scope.initiateTeam.length = 0;
                 }
             };
 

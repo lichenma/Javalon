@@ -146,9 +146,11 @@ function onMessageReceived(payload) {
         angular.element(document.getElementById('game-page')).scope().$apply();
     } else if (message.type === "VOTE_TEAM"){
         messageElement.classList.add('event-message');
+        var vote = message.content;
         message.content=message.sender + ' voted on the team: '+message.content;
 
-        angular.element(document.getElementById('game-page')).scope().voteTeam(message.players);
+        angular.element(document.getElementById('game-page')).scope().voteTeamImpl(vote);
+        angular.element(document.getElementById('game-page')).scope().checkVoteTeam();
         angular.element(document.getElementById('game-page')).scope().$apply();
     } else {
         messageElement.classList.add('chat-message');
@@ -383,6 +385,7 @@ function hideVotingModal(initiateTeam){
 }
 
 function sendApprove(){
+    var scope = angular.element(document.getElementById('game-page')).scope();
     stompClient.send("/app/chat.voteTeam/"+Id,
                 {},
                 JSON.stringify({sender: scope.playerId, type: 'VOTE_TEAM', content: 'APPROVE'}));
@@ -390,6 +393,7 @@ function sendApprove(){
 }
 
 function sendReject(){
+    var scope = angular.element(document.getElementById('game-page')).scope();
     stompClient.send("/app/chat.voteTeam/"+Id,
                 {},
                 JSON.stringify({sender: scope.playerId, type: 'VOTE_TEAM', content: 'REJECT'}));

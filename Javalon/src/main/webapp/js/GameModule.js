@@ -261,6 +261,8 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                 scope.missionNumber= [2,3,4,3,4];
                 scope.initiatePlayer = scope.gameProperties.firstPlayer;
                 scope.votingPool = [];
+                scope.approvePool = [];
+                scope.rejectPool = [];
                 initiateTeamSelection(scope.initiatePlayer);
 
             }
@@ -321,7 +323,41 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
 
             scope.voteTeam= async function(players){
                 // Display a Modal for all players prompting them to vote on the initiateTeam proposed 
-                showVotingModal(players);                
+                showVotingModal(players);
+                console.log(scope);                
+            };
+
+            scope.voteTeamImpl = async function(vote){
+                scope.votingPool.push(vote);
+            };
+
+            scope.checkVoteTeam = async function(){
+                // TODO change this in the future
+                if (scope.votingPool.length == 2) {             // This is the inital condition it should be length=number of players
+                    console.log('Finished collecting votes'); 
+                    scope.votingPool.forEach(function(vote){
+                        if (vote == "REJECT"){
+                            scope.rejectPool.push(vote);
+                        } else {
+                            scope.approvePool.push(vote);
+                        }
+                    });
+
+                    
+                    if (scope.approvePool.length>scope.rejectPool.length){  // Only go ahead if there are move approves than rejects 
+                        console.log('Approved! Sending Players on the Mission')
+                        //startMission();
+                    } else {
+                        console.log('Rejected! Adding a failed piece to the board and restarting the voting process');
+
+                    }
+
+                    // Resetting the variables 
+                    scope.votingPool.length = 0; 
+                    scope.rejectPool.length = 0; 
+                    scope.approvePool.length = 0; 
+                    scope.playerList.length = 0; 
+                }
             };
 
 

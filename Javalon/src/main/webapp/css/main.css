@@ -295,6 +295,7 @@ button.accent {
 
 /* The Close Button */
 .close {
+    z-index: 2;
     padding-top: 8em;
     position: absolute;
     top: 15px;
@@ -386,7 +387,7 @@ strong {
 .initiateModal {
     display: none; 
     position: fixed; 
-    z-index: 2; /* Sit on top of other modals as well*/
+    z-index: 1; 
     padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;
@@ -434,7 +435,7 @@ strong {
 .votingModal {
     display: none; 
     position: fixed; 
-    z-index: 2; /* Sit on top of other modals as well*/
+    z-index: 1; 
     padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;

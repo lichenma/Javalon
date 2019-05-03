@@ -103,6 +103,7 @@
 	</form>
 	<!-- Modal Caption (Image Text) -->
 	<div id="initiateCaption"></div>
+	<button type="button" class="info" onmousedown="showCharacter()" onmouseup="hideCharacter()">Show Character</button>
 </div>
 
 
@@ -110,13 +111,14 @@
 <div id="votingModal" class="votingModal">
 	<div class = "row"> 
 		<div class="col-md-6">
-			<img class="votingModal-content" id="votingImg01">
+			<img class="votingModal-content" id="votingImg01" onclick="sendApprove()">
 		</div>
 		<div class="col-md-6">
-			<img class="votingModal-content" id="votingImg02">
+			<img class="votingModal-content" id="votingImg02" onclick="sendReject()">
 		</div>
 	</div>
 	<div id="votingCaption"></div>
+	<button type="button" class="info" onmousedown="showCharacter()" onmouseup="hideCharacter()">Show Character</button>
 </div>
 
 

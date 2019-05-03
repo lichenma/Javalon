@@ -144,7 +144,12 @@ function onMessageReceived(payload) {
 
         angular.element(document.getElementById('game-page')).scope().voteTeam(message.players);
         angular.element(document.getElementById('game-page')).scope().$apply();
+    } else if (message.type === "VOTE_TEAM"){
+        messageElement.classList.add('event-message');
+        message.content=message.sender + ' voted on the team: '+message.content;
 
+        angular.element(document.getElementById('game-page')).scope().voteTeam(message.players);
+        angular.element(document.getElementById('game-page')).scope().$apply();
     } else {
         messageElement.classList.add('chat-message');
 
@@ -370,12 +375,24 @@ function showVotingModal(initiateTeam){
     //initiateModalImg.src = "../images/Morgana.png";
     votingCaptionText.innerHTML = "The Proposed Team is: " +initiateTeam + " Please Vote";
     votingApproveImg.src = "../images/approve.jpg";
-    votingApproveImg.onclick = "sendApprove()";
     votingRejectImg.src="../images/reject.jpg";
-    votingRejectImg.onclick = "sendReject()";
 }
 
 function hideVotingModal(initiateTeam){
     votingModal.style.display="none";
+}
+
+function sendApprove(){
+    stompClient.send("/app/chat.voteTeam/"+Id,
+                {},
+                JSON.stringify({sender: scope.playerId, type: 'VOTE_TEAM', content: 'APPROVE'}));
+    votingModal.style.display = "none";
+}
+
+function sendReject(){
+    stompClient.send("/app/chat.voteTeam/"+Id,
+                {},
+                JSON.stringify({sender: scope.playerId, type: 'VOTE_TEAM', content: 'REJECT'}));
+    votingModal.style.display = "none";
 }
 

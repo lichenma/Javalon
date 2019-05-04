@@ -19,6 +19,12 @@ public class ChatController {
         return chatMessage;
     }
 
+    @MessageMapping("/chat.sendGameInfo/{Id}")
+    @SendTo("/topic/{Id}")
+    public ChatMessage sendGameInfo(@Payload ChatMessage chatMessage) {
+        return chatMessage;
+    }
+
     @MessageMapping("/chat.sendMove/{Id}")
     @SendTo("/topic/{Id}")
     public ChatMessage sendMove(@Payload ChatMessage chatMessage) {

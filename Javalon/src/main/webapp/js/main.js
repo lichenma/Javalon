@@ -25,6 +25,10 @@ var votingCaptionText = document.getElementById("votingCaption");
 
 // Get the voting tokens 
 var votingToken1 = document.getElementById('votingToken1');
+var votingToken2 = document.getElementById('votingToken2');
+var votingToken3 = document.getElementById('votingToken3');
+var votingToken4 = document.getElementById('votingToken4');
+var votingToken5 = document.getElementById('votingToken5');
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() { 
@@ -155,6 +159,13 @@ function onMessageReceived(payload) {
         angular.element(document.getElementById('game-page')).scope().voteTeamImpl(vote);
         angular.element(document.getElementById('game-page')).scope().checkVoteTeam();
         angular.element(document.getElementById('game-page')).scope().$apply();
+    } else if (message.type === "GAME_INFO"){
+        messageElement.classList.add('event-message');
+        if (message.content=="The Team has been Rejected"){
+            
+            // TODO 
+            // here you want to update the initiating player and go on
+        }
     } else {
         messageElement.classList.add('chat-message');
 
@@ -406,6 +417,44 @@ function sendReject(){
 
 function displayVotingTokens(num){
     if (num==0){
-
+        votingToken1.style.display="none";
+        votingToken2.style.display="none";
+        votingToken3.style.display="none";
+        votingToken4.style.display="none";
+        votingToken5.style.display="none";   
+    } else if (num ==1){
+        votingToken1.style.display="inline";
+        votingToken2.style.display="none";
+        votingToken3.style.display="none";
+        votingToken4.style.display="none";
+        votingToken5.style.display="none"; 
+    } else if (num == 2){
+        votingToken1.style.display="inline";
+        votingToken2.style.display="inline";
+        votingToken3.style.display="none";
+        votingToken4.style.display="none";
+        votingToken5.style.display="none"; 
+    } else if (num == 3){
+        votingToken1.style.display="inline";
+        votingToken2.style.display="inline";
+        votingToken3.style.display="inline";
+        votingToken4.style.display="none";
+        votingToken5.style.display="none"; 
+    } else if (num==4){
+        votingToken1.style.display="inline";
+        votingToken2.style.display="inline";
+        votingToken3.style.display="inline";
+        votingToken4.style.display="inline";
+        votingToken5.style.display="none"; 
+    } else {
+        votingToken1.style.display="inline";
+        votingToken2.style.display="inline";
+        votingToken3.style.display="inline";
+        votingToken4.style.display="inline";
+        votingToken5.style.display="inline";
+        
+        // This is a team evil win condition 
+        angular.element(document.getElementById('game-page')).scope().gameStatus="Team Evil Wins";
+        // sendTeamEvilWins();
     }
 }

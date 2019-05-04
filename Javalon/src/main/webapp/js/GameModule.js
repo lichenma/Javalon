@@ -358,7 +358,12 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                         //startMission();
                     } else {
                         console.log('Rejected! Adding a failed piece to the board and restarting the voting process');
-                        //refreshGameBoard();
+                        scope.votingTokens.push("Token"); 
+                        refreshGameBoard();
+                        stompClient.send("/app/chat.sendGameInfo/"+Id,
+                                    {},
+                                    JSON.stringify({type: 'GAME_INFO', content:"The Team has been Rejected"}))
+                        hideInitiateTeamModal();
                     }
 
                     // Resetting the variables 

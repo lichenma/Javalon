@@ -128,6 +128,61 @@ a:after { /* Just to add a shadow to the navigation bar*/
     background-image: url("../images/six_player.png");
     background-repeat: no-repeat;
     background-size: contain;
+
+}
+
+/*.backgroundimage {
+    z-index: -1;
+    height:auto;
+    width:100%;
+    position: relative;
+    top:0;
+    left:0;
+}*/
+
+.votingToken1 {
+    position: relative;
+    top: 23em;
+    left:0.3em;
+    width:14%;
+    height:auto;
+    display: none;
+}
+
+.votingToken2 {
+    position: relative;
+    top: 23em;
+    left:0.3em;
+    width:14%;
+    height:auto;
+    display: none;
+}
+
+.votingToken3 {
+    position: relative;
+    top: 23em;
+    left:0.3em;
+    width:14%;
+    height:auto;
+    display: none;
+}
+
+.votingToken4 {
+    position: relative;
+    top: 23em;
+    left:0.3em;
+    width:14%;
+    height:auto;
+    display: none;
+}
+
+.votingToken5 {
+    position: relative;
+    top: 23em;
+    left:0.3em;
+    width:14%;
+    height:auto;
+    display:none;
 }
 
 .tablerow {

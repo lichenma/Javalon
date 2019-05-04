@@ -23,6 +23,9 @@ var votingApproveImg = document.getElementById("votingImg01");
 var votingRejectImg = document.getElementById("votingImg02");
 var votingCaptionText = document.getElementById("votingCaption");
 
+// Get the voting tokens 
+var votingToken1 = document.getElementById('votingToken1');
+
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() { 
   modal.style.display = "none";
@@ -402,5 +405,7 @@ function sendReject(){
 
 
 function displayVotingTokens(num){
-    
+    if (num==0){
+
+    }
 }

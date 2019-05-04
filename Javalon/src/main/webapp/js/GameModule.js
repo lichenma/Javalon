@@ -263,8 +263,16 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                 scope.votingPool = [];
                 scope.approvePool = [];
                 scope.rejectPool = [];
+                scope.votingTokens = [];
+                scope.missionTokens = [];
                 initiateTeamSelection(scope.initiatePlayer);
 
+            }
+
+            function refreshGameBoard(){
+                // Alright so the idea is we have an array and then we call array.length and have have if statements which will show pictures
+                var numVotingTokens = scope.votingTokens.length; 
+                displayVotingTokens(numVotingTokens);
             }
 
             function initiateTeamSelection(player){
@@ -324,6 +332,7 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
             scope.voteTeam= async function(players){
                 // Display a Modal for all players prompting them to vote on the initiateTeam proposed 
                 showVotingModal(players);
+                scope.initiateTeam = players;   // This updates the scope variables for all users so that we can manipulate it 
                 console.log(scope);                
             };
 
@@ -349,14 +358,14 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                         //startMission();
                     } else {
                         console.log('Rejected! Adding a failed piece to the board and restarting the voting process');
-                        //addFailedPiece();
+                        //refreshGameBoard();
                     }
 
                     // Resetting the variables 
                     scope.votingPool.length = 0; 
                     scope.rejectPool.length = 0; 
                     scope.approvePool.length = 0; 
-                    scope.initiateTeam.length = 0;
+                    //scope.initiateTeam.length = 0;
                 }
             };
 

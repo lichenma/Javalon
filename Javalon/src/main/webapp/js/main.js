@@ -400,3 +400,7 @@ function sendReject(){
     votingModal.style.display = "none";
 }
 
+
+function displayVotingTokens(num){
+    
+}

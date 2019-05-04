@@ -159,13 +159,12 @@ function onMessageReceived(payload) {
         angular.element(document.getElementById('game-page')).scope().voteTeamImpl(vote);
         angular.element(document.getElementById('game-page')).scope().checkVoteTeam();
         angular.element(document.getElementById('game-page')).scope().$apply();
-    } else if (message.type === "GAME_INFO"){
+    } else if (message.type === "REJECT_TEAM"){
         messageElement.classList.add('event-message');
-        if (message.content=="The Team has been Rejected"){
             
             // TODO 
             // here you want to update the initiating player and go on
-        }
+        
     } else {
         messageElement.classList.add('chat-message');
 

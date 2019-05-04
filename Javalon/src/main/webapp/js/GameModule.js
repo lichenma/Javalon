@@ -362,7 +362,7 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                         refreshGameBoard();
                         stompClient.send("/app/chat.sendGameInfo/"+Id,
                                     {},
-                                    JSON.stringify({type: 'GAME_INFO', content:"The Team has been Rejected"}))
+                                    JSON.stringify({type: 'REJECT_TEAM', content:"The Team has been Rejected"}))
                         hideInitiateTeamModal();
                     }
 

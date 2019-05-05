@@ -161,7 +161,10 @@ function onMessageReceived(payload) {
         angular.element(document.getElementById('game-page')).scope().$apply();
     } else if (message.type === "REJECT_TEAM"){
         messageElement.classList.add('event-message');
-            
+        angular.element(document.getElementById('game-page')).scope().updateInitiatePlayer();
+        var nextPlayer = angular.element(document.getElementById('game-page')).scope().initiatePlayer;
+        angular.element(document.getElementById('game-page')).scope().initiateTeamSelection(nextPlayer);
+        angular.element(document.getElementById('game-page')).scope().$apply();    
             // TODO 
             // here you want to update the initiating player and go on
         

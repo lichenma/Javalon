@@ -374,6 +374,25 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                 }
             };
 
+            scope.updateInitiatePlayer = async function(){
+                // TODO this is written for six player game and needs to be updated for other game modes 
+                if (scope.initiatePlayer == scope.gameProperties.firstPlayer){
+                    scope.initiatePlayer = scope.gameProperties.secondPlayer;
+                } else if (scope.initiatePlayer == scope.gameProperties.secondPlayer){
+                    scope.initiatePlayer = scope.gameProperties.thirdPlayer;
+                } else if (scope.initiatePlayer == scope.gameProperties.thirdPlayer){
+                    scope.initiatePlayer = scope.gameProperties.fourthPlayer;
+                } else if (scope.initiatePlayer == scope.gameProperties.fourthPlayer) {
+                    scope.initiatePlayer = scope.gameProperties.fifthPlayer;
+                } else if (scope.initiatePlayer == scope.gameProperties.fifthPlayer) {
+                    scope.initiatePlayer = scope.gameProperties.sixthPlayer;
+                } else if (scope.initiatePlayer == scope.gameProperties.sixthPlayer) {
+                    scope.initiatePlayer = scope.gameProperties.firstPlayer; 
+                } else {
+                    // currently does not handle other cases but it should 
+                }
+            }
+
 
             scope.update= async function() {
                 await sleep(300);

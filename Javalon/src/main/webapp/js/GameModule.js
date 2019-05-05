@@ -360,6 +360,10 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                         console.log('Rejected! Adding a failed piece to the board and restarting the voting process');
                         scope.votingTokens.push("Token"); 
                         refreshGameBoard();
+
+                        // Since the team was rejected we can just push scope.participantNumber back onto scope.missionNumber and pass to everyone
+                        scope.missionNumber.unshift(scope.participantNumber);
+
                         if (scope.playerId==scope.initiatePlayer.userName){
                             // Only the initiating Player sends the reject team message
                             stompClient.send("/app/chat.sendGameInfo/"+Id,

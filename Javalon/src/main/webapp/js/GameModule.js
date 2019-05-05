@@ -360,9 +360,14 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                         console.log('Rejected! Adding a failed piece to the board and restarting the voting process');
                         scope.votingTokens.push("Token"); 
                         refreshGameBoard();
-                        stompClient.send("/app/chat.sendGameInfo/"+Id,
+                        if (scope.playerId==scope.initiatePlayer.userName){
+                            // Only the initiating Player sends the reject team message
+                            stompClient.send("/app/chat.sendGameInfo/"+Id,
                                     {},
                                     JSON.stringify({type: 'REJECT_TEAM', content:"The Team has been Rejected"}))
+                            
+                            // ALSO NEED A WAY TO PASS THE CURRENT MISSION STATUS VARIABLE TO ALL PLAYERS IE PASS SCOPE.MISSIONNUMBER
+                        }
                         hideInitiateTeamModal();
                     }
 
@@ -379,7 +384,10 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                 if (scope.initiatePlayer == scope.gameProperties.firstPlayer){
                     scope.initiatePlayer = scope.gameProperties.secondPlayer;
                 } else if (scope.initiatePlayer == scope.gameProperties.secondPlayer){
-                    scope.initiatePlayer = scope.gameProperties.thirdPlayer;
+                    // remove this for actual game
+                    
+                    scope.initiatePlayer == scope.gameProperties.firstPlayer;
+                    //scope.initiatePlayer = scope.gameProperties.thirdPlayer;
                 } else if (scope.initiatePlayer == scope.gameProperties.thirdPlayer){
                     scope.initiatePlayer = scope.gameProperties.fourthPlayer;
                 } else if (scope.initiatePlayer == scope.gameProperties.fourthPlayer) {

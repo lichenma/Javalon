@@ -366,7 +366,7 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                                     {},
                                     JSON.stringify({type: 'REJECT_TEAM', content:"The Team has been Rejected"}))
                             
-                            // ALSO NEED A WAY TO PASS THE CURRENT MISSION STATUS VARIABLE TO ALL PLAYERS IE PASS SCOPE.MISSIONNUMBER
+                            // ALSO NEED A WAY TO PASS THE CURRENT MISSION STATUS VARIABLE TO ALL PLAYERS IE PASS SCOPE.MISSIONNUMBER -- IMPORTANT
                         }
                         hideInitiateTeamModal();
                     }

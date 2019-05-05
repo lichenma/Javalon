@@ -162,6 +162,7 @@ function onMessageReceived(payload) {
     } else if (message.type === "REJECT_TEAM"){
         messageElement.classList.add('event-message');
         angular.element(document.getElementById('game-page')).scope().nextPlayer();
+        angular.element(document.getElementById('game-page')).scope().missionNumber = message.scopeArray;
         angular.element(document.getElementById('game-page')).scope().$apply();    
             // TODO 
             // here you want to update the initiating player and go on

@@ -15,7 +15,8 @@ public class ChatMessage {
         MOVE,
         PROPOSE_TEAM,
         VOTE_TEAM,
-        GAME_INFO
+        REJECT_TEAM, 
+        APPROVE_TEAM
     }
 
     public MessageType getType() {

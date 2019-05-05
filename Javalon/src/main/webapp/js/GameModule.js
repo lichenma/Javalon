@@ -374,7 +374,7 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                 }
             };
 
-            scope.updateInitiatePlayer = async function(){
+            scope.nextPlayer = async function(){
                 // TODO this is written for six player game and needs to be updated for other game modes 
                 if (scope.initiatePlayer == scope.gameProperties.firstPlayer){
                     scope.initiatePlayer = scope.gameProperties.secondPlayer;
@@ -391,6 +391,7 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                 } else {
                     // currently does not handle other cases but it should 
                 }
+                initiateTeamSelection(scope.initiatePlayer);
             }
 
 

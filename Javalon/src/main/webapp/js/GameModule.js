@@ -432,7 +432,7 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                             // Only the initiating Player sends the success mission message 
                             stompClient.send("/app/chat.sendGameInfo/"+Id,
                                     {},
-                                    JSON.stringify({type: 'APPROVE_TEAM', content:"The Team has been Approved: ", scopeIntArray: scope.missionNumber, players: scope.initiateTeam}))
+                                    JSON.stringify({type: 'SUCCESS_MISSION', content:"The Mission has Passed", scopeIntArray: scope.missionNumber, players: scope.initiateTeam}))
                             
                         }
 
@@ -445,9 +445,8 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                             // Only the initiating Player sends the fail mission message
                             stompClient.send("/app/chat.sendGameInfo/"+Id,
                                     {},
-                                    JSON.stringify({type: 'REJECT_TEAM', content:"The Team has been Rejected", scopeIntArray: scope.missionNumber}))
+                                    JSON.stringify({type: 'FAIL_MISSION', content:"The Mission has Failed", scopeIntArray: scope.missionNumber, players: scope.initiateTeam}))
                             
-                            // ALSO NEED A WAY TO PASS THE CURRENT MISSION STATUS VARIABLE TO ALL PLAYERS IE PASS SCOPE.MISSIONNUMBER -- IMPORTANT
                         }
                         hideInitiateTeamModal();
                     }

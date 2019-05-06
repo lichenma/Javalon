@@ -185,6 +185,56 @@ a:after { /* Just to add a shadow to the navigation bar*/
     display:none;
 }
 
+
+
+.missionToken1 {
+    position: relative;
+    top: 12em;
+    left: 1em;
+    width: 18%;
+    height: auto;
+    display: none;
+}
+
+.missionToken2 {
+    position: relative;
+    top: 12em;
+    left: 1em;
+    width: 18%;
+    height: auto;
+    display: none;
+}
+
+.missionToken3 {
+    position: relative;
+    top: 12em;
+    left: 0.5em;
+    width: 18%;
+    height: auto;
+    display: none;
+}
+
+.missionToken4 {
+    position: relative;
+    top: 12em;
+    left: 0.5em;
+    width: 18%;
+    height: auto;
+    display: none;
+}
+
+.missionToken5 {
+    position: relative;
+    top: 12em;
+    left: 0.5em;
+    width: 18%;
+    height: auto;
+    display: none;
+}
+
+
+
+
 .tablerow {
     display: block;
     overflow: hidden;

@@ -264,6 +264,7 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                 scope.missionVotingPool = [];
                 scope.approvePool = [];
                 scope.rejectPool = [];
+                scope.failPool = [];
                 scope.votingTokens = [];
                 scope.missionTokens = [];
                 initiateTeamSelection(scope.initiatePlayer);
@@ -413,8 +414,57 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
 
 
             scope.checkVoteMission = async function(){
-                
-            }
+                // TODO change this in the future
+                if (scope.missionVotingPool.length == 2) {   // This is the inital condition it should be length=number of players
+                    console.log('Finished collecting votes'); 
+                    scope.missionvotingPool.forEach(function(vote){
+                        if (vote == "FAIL"){
+                            scope.failPool.push(vote);
+                        } 
+                    });
+
+                    if (scope.failPool.length>0){  // Only go ahead if there is a failed vote  
+                        console.log('FAILED! Mission was not a success')
+                        //startMission();
+
+                        // resetting the voting tokens 
+                        scope.votingTokens.length = 0; 
+                        refreshGameBoard();
+
+                        if (scope.playerId==scope.initiatePlayer.userName){
+                            // Only the initiating Player sends the approve team message 
+                            stompClient.send("/app/chat.sendGameInfo/"+Id,
+                                    {},
+                                    JSON.stringify({type: 'APPROVE_TEAM', content:"The Team has been Approved: ", scopeIntArray: scope.missionNumber, players: scope.initiateTeam}))
+                            
+                        }
+
+                    } else {
+                        console.log('Rejected! Adding a failed piece to the board and restarting the voting process');
+                        scope.votingTokens.push("Token"); 
+                        refreshGameBoard();
+
+                        // Since the team was rejected we can just push scope.participantNumber back onto scope.missionNumber and pass to everyone
+                        scope.missionNumber.unshift(scope.participantNumber);
+
+                        if (scope.playerId==scope.initiatePlayer.userName){
+                            // Only the initiating Player sends the reject team message
+                            stompClient.send("/app/chat.sendGameInfo/"+Id,
+                                    {},
+                                    JSON.stringify({type: 'REJECT_TEAM', content:"The Team has been Rejected", scopeIntArray: scope.missionNumber}))
+                            
+                            // ALSO NEED A WAY TO PASS THE CURRENT MISSION STATUS VARIABLE TO ALL PLAYERS IE PASS SCOPE.MISSIONNUMBER -- IMPORTANT
+                        }
+                        hideInitiateTeamModal();
+                    }
+
+                    // Resetting the variables 
+                    scope.votingPool.length = 0; 
+                    scope.rejectPool.length = 0; 
+                    scope.approvePool.length = 0; 
+                    //scope.initiateTeam.length = 0;
+                }
+            };
 
             scope.nextPlayer = async function(){
                 // TODO this is written for six player game and needs to be updated for other game modes 

@@ -161,8 +161,8 @@ function onMessageReceived(payload) {
         angular.element(document.getElementById('game-page')).scope().$apply();
     } else if (message.type === "REJECT_TEAM"){
         messageElement.classList.add('event-message');
-        angular.element(document.getElementById('game-page')).scope().nextPlayer();
         angular.element(document.getElementById('game-page')).scope().missionNumber = message.scopeIntArray;
+        angular.element(document.getElementById('game-page')).scope().nextPlayer();
         angular.element(document.getElementById('game-page')).scope().$apply();    
             // TODO 
             // here you want to update the initiating player and go on
@@ -456,6 +456,7 @@ function displayVotingTokens(num){
         
         // This is a team evil win condition 
         angular.element(document.getElementById('game-page')).scope().gameStatus="Team Evil Wins";
+        alert('TEAM EVIL WINS TOO MANY FAILED TEAM PROPOSALS IN A ROW');
         // sendTeamEvilWins();
     }
 }

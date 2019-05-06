@@ -275,8 +275,10 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                 displayVotingTokens(numVotingTokens);
             }
 
-            function initiateTeamSelection(player){
-                
+            async function initiateTeamSelection(player){
+                await sleep(2000);
+                console.log(scope);
+                console.log(player);
                 var initiatePlayer = player;
                 var initiateTeam = []; 
                 scope.numChecks = 0;
@@ -390,7 +392,8 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                 } else if (scope.initiatePlayer == scope.gameProperties.secondPlayer){
                     // remove this for actual game
                     
-                    scope.initiatePlayer == scope.gameProperties.firstPlayer;
+                    scope.initiatePlayer = scope.gameProperties.firstPlayer;
+
                     //scope.initiatePlayer = scope.gameProperties.thirdPlayer;
                 } else if (scope.initiatePlayer == scope.gameProperties.thirdPlayer){
                     scope.initiatePlayer = scope.gameProperties.fourthPlayer;
@@ -403,6 +406,7 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                 } else {
                     // currently does not handle other cases but it should 
                 }
+                console.log(scope.initiatePlayer);
                 initiateTeamSelection(scope.initiatePlayer);
             }
 

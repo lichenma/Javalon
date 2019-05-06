@@ -342,6 +342,14 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                 scope.votingPool.push(vote);
             };
 
+            scope.startMission = async function(players){
+                players.forEach(function(player){
+                    if (player == scope.playerId){
+                        // This means that the current player is participating in the mission -- display the mission Modal 
+                    }
+                })
+            }
+
             scope.checkVoteTeam = async function(){
                 // TODO change this in the future
                 if (scope.votingPool.length == 2) {             // This is the inital condition it should be length=number of players
@@ -358,6 +366,19 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                     if (scope.approvePool.length>scope.rejectPool.length){  // Only go ahead if there are move approves than rejects 
                         console.log('Approved! Sending Players on the Mission')
                         //startMission();
+
+                        // resetting the voting tokens 
+                        scope.votingTokens.length = 0; 
+                        refreshGameBoard();
+
+                        if (scope.playerId==scope.initiatePlayer.userName){
+                            // Only the initiating Player sends the approve team message 
+                            stompClient.send("/app/chat.sendGameInfo/"+Id,
+                                    {},
+                                    JSON.stringify({type: 'APPROVE_TEAM', content:"The Team has been Approved: ", scopeIntArray: scope.missionNumber, players: scope.initiateTeam}))
+                            
+                        }
+
                     } else {
                         console.log('Rejected! Adding a failed piece to the board and restarting the voting process');
                         scope.votingTokens.push("Token"); 

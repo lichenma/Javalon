@@ -166,7 +166,11 @@ function onMessageReceived(payload) {
         angular.element(document.getElementById('game-page')).scope().$apply();    
             // TODO 
             // here you want to update the initiating player and go on
-        
+    } else if (message.type === "APPROVE_TEAM"){
+        messageElement.classList.add('event-message');
+        message.content = mesage.content + message.players; 
+        angular.element(document.getElementById('game-page')).scope().missionNumber = message.scopeIntArray;
+        angular.element(document.getElementById('game-page')).scope().startMission(message.players);
     } else {
         messageElement.classList.add('chat-message');
 

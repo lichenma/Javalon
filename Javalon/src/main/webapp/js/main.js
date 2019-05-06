@@ -23,6 +23,13 @@ var votingApproveImg = document.getElementById("votingImg01");
 var votingRejectImg = document.getElementById("votingImg02");
 var votingCaptionText = document.getElementById("votingCaption");
 
+// Get the mission modal 
+var missionModal = document.getElementById('missionModal');
+var missionSuccessImg = document.getElementById("missionImg01");
+var missionFailImg = document.getElementById("missionImg02");
+var votingCaptionText = document.getElementById("missionCaption");
+
+
 // Get the voting tokens 
 var votingToken1 = document.getElementById('votingToken1');
 var votingToken2 = document.getElementById('votingToken2');
@@ -463,4 +470,32 @@ function displayVotingTokens(num){
         alert('TEAM EVIL WINS TOO MANY FAILED TEAM PROPOSALS IN A ROW');
         // sendTeamEvilWins();
     }
+}
+
+
+function showMissionModal(){
+    missionModal.style.display = "block";
+    missionCaptionText.innerHTML = "Please Vote - If you are a Member of Team Good you Must Vote Pass";
+    missionSuccessImg.src = "../images/success.jpg";
+    missionFailImg.src="../images/fail.jpg";
+}
+
+function hideVotingModal(){
+    missionModal.style.display="none";
+}
+
+function sendSuccess(){
+    var scope = angular.element(document.getElementById('game-page')).scope();
+    stompClient.send("/app/chat.voteTeam/"+Id,
+                {},
+                JSON.stringify({sender: scope.playerId, type: 'VOTE_TEAM', content: 'APPROVE'}));
+    votingModal.style.display = "none";
+}
+
+function sendFail(){
+    var scope = angular.element(document.getElementById('game-page')).scope();
+    stompClient.send("/app/chat.voteTeam/"+Id,
+                {},
+                JSON.stringify({sender: scope.playerId, type: 'VOTE_TEAM', content: 'REJECT'}));
+    votingModal.style.display = "none";
 }

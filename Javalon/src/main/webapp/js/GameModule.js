@@ -345,7 +345,7 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                 players.forEach(function(player){
                     if (player == scope.playerId){
                         // This means that the current player is participating in the mission -- display the mission Modal 
-
+                        showMissionModal();
                     }
                 })
             }

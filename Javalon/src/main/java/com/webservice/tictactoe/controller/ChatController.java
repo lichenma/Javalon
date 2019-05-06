@@ -43,6 +43,12 @@ public class ChatController {
         return chatMessage;
     }
 
+    @MessageMapping("/chat.voteMission/{Id}")
+    @SendTo("/topic/{Id}")
+    public ChatMessage voteMission(@Payload ChatMessage chatMessage) {
+        return chatMessage;
+    }
+
     @MessageMapping("/chat.addUser/{Id}")
     @SendTo("/topic/{Id}")
     public ChatMessage addUser(@Payload ChatMessage chatMessage,

@@ -261,6 +261,7 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                 scope.missionNumber= [2,3,4,3,4];
                 scope.initiatePlayer = scope.gameProperties.firstPlayer;
                 scope.votingPool = [];
+                scope.missionVotingPool = [];
                 scope.approvePool = [];
                 scope.rejectPool = [];
                 scope.votingTokens = [];
@@ -341,6 +342,10 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                 scope.votingPool.push(vote);
             };
 
+            scope.voteMissionImpl = async function(vote){
+                scope.missionVotingPool.push(vote);
+            };
+
             scope.startMission = async function(players){
                 players.forEach(function(player){
                     if (player == scope.playerId){
@@ -405,6 +410,11 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                     //scope.initiateTeam.length = 0;
                 }
             };
+
+
+            scope.checkVoteMission = async function(){
+                
+            }
 
             scope.nextPlayer = async function(){
                 // TODO this is written for six player game and needs to be updated for other game modes 

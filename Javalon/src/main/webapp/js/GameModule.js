@@ -275,6 +275,7 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                 // Alright so the idea is we have an array and then we call array.length and have have if statements which will show pictures
                 var numVotingTokens = scope.votingTokens.length; 
                 displayVotingTokens(numVotingTokens);
+                displayMissionTokens(scope.missionTokens);
             }
 
             async function initiateTeamSelection(player){
@@ -371,8 +372,6 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                     
                     if (scope.approvePool.length>scope.rejectPool.length){  // Only go ahead if there are move approves than rejects 
                         console.log('Approved! Sending Players on the Mission')
-                        //startMission();
-
                         // resetting the voting tokens 
                         scope.votingTokens.length = 0; 
                         refreshGameBoard();
@@ -382,7 +381,6 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                             stompClient.send("/app/chat.sendGameInfo/"+Id,
                                     {},
                                     JSON.stringify({type: 'APPROVE_TEAM', content:"The Team has been Approved: ", scopeIntArray: scope.missionNumber, players: scope.initiateTeam}))
-                            
                         }
 
                     } else {
@@ -423,12 +421,11 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                         } 
                     });
 
-                    if (scope.failPool.length>0){  // Only go ahead if there is a failed vote  
-                        console.log('FAILED! Mission was not a success')
-                        //startMission();
+                    if (scope.failPool.length==0){  // Only go ahead if there are no failed votes  
+                        console.log('PASSED! Mission was a success')
 
                         // resetting the voting tokens 
-                        scope.votingTokens.length = 0; 
+                        scope.missionTokens.unshift("SUCCESS"); 
                         refreshGameBoard();
 
                         if (scope.playerId==scope.initiatePlayer.userName){

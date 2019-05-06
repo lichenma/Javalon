@@ -480,6 +480,12 @@ function displayVotingTokens(num){
     }
 }
 
+function displayMissionTokens(array){
+    for (var i=0; i<array.length; i++){
+        
+    }
+}
+
 
 function showMissionModal(){
     missionModal.style.display = "block";

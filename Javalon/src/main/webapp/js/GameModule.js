@@ -429,7 +429,7 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                         refreshGameBoard();
 
                         if (scope.playerId==scope.initiatePlayer.userName){
-                            // Only the initiating Player sends the approve team message 
+                            // Only the initiating Player sends the success mission message 
                             stompClient.send("/app/chat.sendGameInfo/"+Id,
                                     {},
                                     JSON.stringify({type: 'APPROVE_TEAM', content:"The Team has been Approved: ", scopeIntArray: scope.missionNumber, players: scope.initiateTeam}))
@@ -437,15 +437,12 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                         }
 
                     } else {
-                        console.log('Rejected! Adding a failed piece to the board and restarting the voting process');
-                        scope.votingTokens.push("Token"); 
+                        console.log('FAIL! Mission was not a success');
+                        scope.missionTokens.unshift("FAIL");
                         refreshGameBoard();
 
-                        // Since the team was rejected we can just push scope.participantNumber back onto scope.missionNumber and pass to everyone
-                        scope.missionNumber.unshift(scope.participantNumber);
-
                         if (scope.playerId==scope.initiatePlayer.userName){
-                            // Only the initiating Player sends the reject team message
+                            // Only the initiating Player sends the fail mission message
                             stompClient.send("/app/chat.sendGameInfo/"+Id,
                                     {},
                                     JSON.stringify({type: 'REJECT_TEAM', content:"The Team has been Rejected", scopeIntArray: scope.missionNumber}))

@@ -18,7 +18,9 @@ public class ChatMessage {
         VOTE_TEAM,
         REJECT_TEAM, 
         APPROVE_TEAM,
-        VOTE_MISSION
+        VOTE_MISSION, 
+        SUCCESS_MISSION, 
+        FAIL_MISSION
     }
 
     public MessageType getType() {

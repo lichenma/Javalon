@@ -414,6 +414,7 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
 
 
             scope.checkVoteMission = async function(){
+                console.log(scope);
                 // TODO change this in the future
                 if (scope.missionVotingPool.length == 2) {   // This is the inital condition it should be length=number of players
                     console.log('Finished collecting votes'); 

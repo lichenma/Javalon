@@ -193,6 +193,18 @@ function onMessageReceived(payload) {
         angular.element(document.getElementById('game-page')).scope().voteMissionImpl(missionVote);
         angular.element(document.getElementById('game-page')).scope().checkVoteMission();
         angular.element(document.getElementById('game-page')).scope().$apply();
+    } else if (message.type === "SUCCESS_MISSION"){
+        messageElement.classList.add('event-message');
+
+        angular.element(document.getElementById('game-page')).scope().missionNumber = message.scopeIntArray;
+        angular.element(document.getElementById('game-page')).scope().nextPlayer();
+        angular.element(document.getElementById('game-page')).scope().$apply(); 
+    } else if (message.type === "FAIL_MISSION"){
+        messageElement.classList.add('event-message');
+
+        angular.element(document.getElementById('game-page')).scope().missionNumber = message.scopeIntArray;
+        angular.element(document.getElementById('game-page')).scope().nextPlayer();
+        angular.element(document.getElementById('game-page')).scope().$apply(); 
     } else {
         messageElement.classList.add('chat-message');
 

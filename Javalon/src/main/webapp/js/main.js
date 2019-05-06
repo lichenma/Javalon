@@ -37,6 +37,13 @@ var votingToken3 = document.getElementById('votingToken3');
 var votingToken4 = document.getElementById('votingToken4');
 var votingToken5 = document.getElementById('votingToken5');
 
+// Get the mission tokens 
+var missionToken1 = document.getElementById('missionToken1');
+var missionToken2 = document.getElementById('missionToken2');
+var missionToken3 = document.getElementById('missionToken3');
+var missionToken4 = document.getElementById('missionToken4');
+var missionToken5 = document.getElementById('missionToken5');
+
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() { 
   modal.style.display = "none";
@@ -481,8 +488,61 @@ function displayVotingTokens(num){
 }
 
 function displayMissionTokens(array){
+
+    // TODO make this work for multiple players as well 
     for (var i=0; i<array.length; i++){
-        
+        var tokenValue = array[i];
+        if (i==0){
+            if (tokenValue=="SUCCESS"){
+                missionToken1.style.display="inline";
+                missionToken1.src = "../images/successToken.png"
+            } else {
+                missionToken1.style.display="inline";
+                missionToken1.src = "../images/failToken.png";
+            }
+        } else if (i==1){
+            if (tokenValue=="SUCCESS"){
+                missionToken2.style.display="inline";
+                missionToken2.src = "../images/successToken.png"
+            } else {
+                missionToken2.style.display="inline";
+                missionToken2.src = "../images/failToken.png";
+            }
+        } else if (i==2){
+            if (tokenValue=="SUCCESS"){
+                missionToken3.style.display="inline";
+                missionToken3.src = "../images/successToken.png"
+            } else {
+                missionToken3.style.display="inline";
+                missionToken3.src = "../images/failToken.png";
+            }
+        } else if (i==3){
+            if (tokenValue=="SUCCESS"){
+                missionToken4.style.display="inline";
+                missionToken4.src = "../images/successToken.png"
+            } else {
+                missionToken4.style.display="inline";
+                missionToken4.src = "../images/failToken.png";
+            }
+        } else if (i==4){
+            if (tokenValue=="SUCCESS"){
+                missionToken5.style.display="inline";
+                missionToken5.src = "../images/successToken.png"
+            } else {
+                missionToken5.style.display="inline";
+                missionToken5.src = "../images/failToken.png";
+            }
+        } else if (i==5){
+            if (tokenValue=="SUCCESS"){
+                missionToken6.style.display="inline";
+                missionToken6.src = "../images/successToken.png"
+            } else {
+                missionToken6.style.display="inline";
+                missionToken6.src = "../images/failToken.png";
+            }
+        } else {
+            // handle the other cases when necessary 
+        }
     }
 }
 

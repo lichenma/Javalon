@@ -415,7 +415,7 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                 // TODO change this in the future
                 if (scope.missionVotingPool.length == 2) {   // This is the inital condition it should be length=number of players
                     console.log('Finished collecting votes'); 
-                    scope.missionvotingPool.forEach(function(vote){
+                    scope.missionVotingPool.forEach(function(vote){
                         if (vote == "FAIL"){
                             scope.failPool.push(vote);
                         } 
@@ -452,9 +452,8 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                     }
 
                     // Resetting the variables 
-                    scope.votingPool.length = 0; 
-                    scope.rejectPool.length = 0; 
-                    scope.approvePool.length = 0; 
+                    scope.missionVotingPool.length = 0; 
+                    scope.failPool.length = 0;  
                     //scope.initiateTeam.length = 0;
                 }
             };

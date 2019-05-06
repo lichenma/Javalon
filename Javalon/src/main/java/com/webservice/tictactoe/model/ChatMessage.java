@@ -6,7 +6,7 @@ public class ChatMessage {
     private String content;
     private String sender;
     private String[] players;
-    private String[] scopeArray;
+    private int[] scopeIntArray;
 
     public enum MessageType {
 
@@ -38,12 +38,12 @@ public class ChatMessage {
         this.players = players;
     }
 
-    public String[] getScopeArray() {
-        return scopeArray;
+    public int[] getscopeIntArray() {
+        return scopeIntArray;
     }
 
-    public void setScopeArray(String[] scopeArray) {
-        this.scopeArray = scopeArray;
+    public void setscopeIntArray(int[] scopeIntArray) {
+        this.scopeIntArray = scopeIntArray;
     }
 
     public String getContent() {

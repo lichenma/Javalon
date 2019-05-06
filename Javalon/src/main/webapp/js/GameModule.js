@@ -368,7 +368,7 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                             // Only the initiating Player sends the reject team message
                             stompClient.send("/app/chat.sendGameInfo/"+Id,
                                     {},
-                                    JSON.stringify({type: 'REJECT_TEAM', content:"The Team has been Rejected", scopeArray: scope.missionNumber}))
+                                    JSON.stringify({type: 'REJECT_TEAM', content:"The Team has been Rejected", scopeIntArray: scope.missionNumber}))
                             
                             // ALSO NEED A WAY TO PASS THE CURRENT MISSION STATUS VARIABLE TO ALL PLAYERS IE PASS SCOPE.MISSIONNUMBER -- IMPORTANT
                         }

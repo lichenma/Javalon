@@ -334,8 +334,7 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
             scope.voteTeam= async function(players){
                 // Display a Modal for all players prompting them to vote on the initiateTeam proposed 
                 showVotingModal(players);
-                scope.initiateTeam = players;   // This updates the scope variables for all users so that we can manipulate it 
-                console.log(scope);                
+                scope.initiateTeam = players;   // This updates the scope variables for all users so that we can manipulate it                
             };
 
             scope.voteTeamImpl = async function(vote){
@@ -346,6 +345,7 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                 players.forEach(function(player){
                     if (player == scope.playerId){
                         // This means that the current player is participating in the mission -- display the mission Modal 
+
                     }
                 })
             }

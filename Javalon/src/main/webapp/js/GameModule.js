@@ -397,6 +397,8 @@ gameModule.controller('gameController', ['$rootScope', '$routeParams', '$scope',
                                     {},
                                     JSON.stringify({type: 'REJECT_TEAM', content:"The Team has been Rejected", scopeIntArray: scope.missionNumber}))
                             
+                                    // ALSO PROBABLY WANT TO SHOW WHO IS PROPOSING THE TEAMS 
+
                             // ALSO NEED A WAY TO PASS THE CURRENT MISSION STATUS VARIABLE TO ALL PLAYERS IE PASS SCOPE.MISSIONNUMBER -- IMPORTANT
                         }
                         hideInitiateTeamModal();

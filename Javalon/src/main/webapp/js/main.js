@@ -27,7 +27,7 @@ var votingCaptionText = document.getElementById("votingCaption");
 var missionModal = document.getElementById('missionModal');
 var missionSuccessImg = document.getElementById("missionImg01");
 var missionFailImg = document.getElementById("missionImg02");
-var votingCaptionText = document.getElementById("missionCaption");
+var missionCaptionText = document.getElementById("missionCaption");
 
 
 // Get the voting tokens 
@@ -175,9 +175,17 @@ function onMessageReceived(payload) {
             // here you want to update the initiating player and go on
     } else if (message.type === "APPROVE_TEAM"){
         messageElement.classList.add('event-message');
-        message.content = mesage.content + message.players; 
+        message.content = message.content + message.players; 
         angular.element(document.getElementById('game-page')).scope().missionNumber = message.scopeIntArray;
         angular.element(document.getElementById('game-page')).scope().startMission(message.players);
+    } else if (message.type === "VOTE_MISSION") {
+        messageElement.classList.add('event-message');
+        var missionVote = message.content; 
+        message.content = message.sender + ' voted on the team: '+message.content; 
+
+        angular.element(document.getElementById('game-page')).scope().voteMissionImpl(missionVote);
+        angular.element(document.getElementById('game-page')).scope().checkVoteMission();
+        angular.element(document.getElementById('game-page')).scope().$apply();
     } else {
         messageElement.classList.add('chat-message');
 
@@ -480,22 +488,22 @@ function showMissionModal(){
     missionFailImg.src="../images/fail.jpg";
 }
 
-function hideVotingModal(){
+function hideMissionModal(){
     missionModal.style.display="none";
 }
 
 function sendSuccess(){
     var scope = angular.element(document.getElementById('game-page')).scope();
-    stompClient.send("/app/chat.voteTeam/"+Id,
+    stompClient.send("/app/chat.voteMission/"+Id,
                 {},
-                JSON.stringify({sender: scope.playerId, type: 'VOTE_TEAM', content: 'APPROVE'}));
-    votingModal.style.display = "none";
+                JSON.stringify({sender: scope.playerId, type: 'VOTE_MISSION', content: 'SUCCESS'}));
+    missionModal.style.display = "none";
 }
 
 function sendFail(){
     var scope = angular.element(document.getElementById('game-page')).scope();
-    stompClient.send("/app/chat.voteTeam/"+Id,
+    stompClient.send("/app/chat.voteMission/"+Id,
                 {},
-                JSON.stringify({sender: scope.playerId, type: 'VOTE_TEAM', content: 'REJECT'}));
-    votingModal.style.display = "none";
+                JSON.stringify({sender: scope.playerId, type: 'VOTE_MISSION', content: 'FAIL'}));
+    missionModal.style.display = "none";
 }

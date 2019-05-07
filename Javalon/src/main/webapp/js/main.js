@@ -369,6 +369,8 @@ function showCharacter() {
                 } else if (character == "ASSASSIN") {
                     modalImg.src = "../images/Assassin.jpg";
                     captionText.innerHTML = "Try to Find and Assassinate Merlin <br> Members of Team Evil: <strong>" + morgana + "</strong";
+                    // add in a button which displays a form that allows the user to at any moment assassinate another player 
+                    // submitting the form should trigger an websockets message and game end condition 
                 } else if (character == "MORGANA") {
                     modalImg.src = "../images/Morgana.png";
                     captionText.innerHTML = "Try to Trick Percival into Thinking you are Merlin <br> Members of Team Evil: <strong>" + assassin + "</strong>";

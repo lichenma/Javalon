@@ -263,6 +263,9 @@ function showCharacter() {
             var character = data;
             if(character){
                 // Handle the logic for displaying the character
+
+                // TODO add in a method for allowing the assassin to assinate people
+                // TODO run a trial 
                 
                 // currently finding the player roles is done client side
                 var scope=angular.element(document.getElementById('game-page')).scope();
@@ -501,9 +504,19 @@ function displayVotingTokens(num){
 
 function displayMissionTokens(array){
 
+    // check for game end conditions 
+    var numSuccess=0;
+    var numFail=0;
+
     // TODO make this work for multiple players as well 
     for (var i=0; i<array.length; i++){
         var tokenValue = array[i];
+        if (tokenValue=="SUCCESS"){
+            numSuccess++;
+        } else {
+            numFail++;
+        }
+
         if (i==0){
             if (tokenValue=="SUCCESS"){
                 missionToken1.style.display="inline";
@@ -556,6 +569,16 @@ function displayMissionTokens(array){
             // handle the other cases when necessary 
         }
     }
+
+    // Game End Conditions 
+
+    if (numSuccess == 3){
+        alert('TEAM GOOD WINS - ASSASSIN HAS A CHANCE TO TAKE DOWN MERLIN');
+    }
+
+    if (numFail == 3){
+        alert('TEAM EVIL WINS')
+    } 
 }
 
 

@@ -15,6 +15,7 @@ gameModule.controller('newGameController', ['$rootScope','$scope', '$http', '$lo
             // ],
             selectedPiece: {name: 'O'},
             availableGameTypes: [
+                {name: 'TWO'},
                 {name: 'SIX'}
             ],
             selectedBoardDimension: {name: 'COMPUTER'}

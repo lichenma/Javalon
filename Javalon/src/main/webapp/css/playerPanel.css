@@ -1,0 +1,14 @@
+.lead {
+    background-color: steelblue;
+    text-align: center;
+    text-color: red;
+    color: white;
+    font-style: italic;
+    width: 40%;
+    font-size: 1em;
+    border-radius: 1em;
+    padding-top: 1em;
+    font-family: sans-serif;
+    padding-bottom: 1em;
+}
+

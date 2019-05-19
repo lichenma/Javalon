@@ -35,6 +35,9 @@ Gradle 5.2.1  Java version 1.8.0_192
 
 * [Spring](https://spring.io/) - Application Framework used
 * [Gradle](https://gradle.org/) - Dependency Management
+* [AngularJS](https://angularjs.org/) - Front-end Front-end Framework
+* [H2](https://www.h2database.com/html/main.html) - In-Memory Database
+* [WebSockets]() - Real-time Communication Protocol
 
 
 ## Acknowledgments 

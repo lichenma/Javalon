@@ -7,14 +7,29 @@ all of the game logic of the classic board game "The Resistance: Avalon".
 
 ## Getting Started
 
+**Login Credentials** 
+
+This application features authentication using spring security and there are few accounts already setup for use: 
+```
+Username           Password
+
+admin              password
+lma                password
+player1            password
+player2            password
+player3            password
+player4            password
+player5            password
+player6            password
+```
+
 **Heroku Hosting:**
 
 Occasionally you may find my project hosted at 
 ```
  https://javalon.herokuapp.com/
  
- Login credientials: username - admin 
-                     password - password
+ Login credientials: (see above)
 ```
 
 <br>

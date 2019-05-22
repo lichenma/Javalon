@@ -11,7 +11,10 @@ all of the game logic of the classic board game "The Resistance: Avalon".
 
 Occasionally you may find my project hosted at 
 ```
- https://x-and-oh.herokuapp.com/
+ https://javalon.herokuapp.com/
+ 
+ Login credientials: username - admin 
+                     password - password
 ```
 
 <br>

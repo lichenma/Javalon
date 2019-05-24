@@ -11,7 +11,7 @@
 
         <!-- FORM for creating new game -->
         <div class="col-md-6">
-            <div class="offset-3">
+            <div class="offset-3" style="padding-top: 4em;">
                 <h2 class="lead">New game</h2>
             
                 <form name="createNewBoard" class="form-horizontal" novalidate ng-submit="createNewGame()">
@@ -58,7 +58,7 @@
         <!-- This makes up the right half of the screen and provides options for users to join existing games -->
         <div class="col-md-6" id= "joinGame">
             <!-- JOIN EXISITNG GAME -->
-            <div class="offset-3">
+            <div class="offset-3" style="padding-top: 4em;">
                 <div ng-controller="gamesToJoinController">
 
                         <table class="table table-hover table-striped table-condensed" style="color:white;" ng-show="gamesToJoin.length">

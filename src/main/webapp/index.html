@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 
-<html ng-app="ticTacToe" class="bg-dark">
+<!-- TODO this is just a hack solution to the screen size being too big and I need to figure out what is going on
+     so that I can get it to scale properly -->
+<html ng-app="ticTacToe" class="bg-dark" style="width: 100vw; position: fixed;">
 
 <head>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -35,7 +37,7 @@
             margin-top: 0px;
         }
         #mainContent {
-            padding-top: 8em;
+            padding-top: 12em;
             height: 100vh;
             background-image: url(../images/castle.jpg);
             background-repeat: no-repeat;

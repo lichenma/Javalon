@@ -94,7 +94,8 @@ function onConnected() {
     //////////////////////////////////////////////////////////////////////////////////
     
     var Url= window.location.href;
-    if (Url.substring(Url.lastIndexOf("/")+1, Url.length)=="page-top"){
+    // work around for the page top issue but in the future it should not be dependent on some url specific parameter
+    if (Url.substring(Url.lastIndexOf("#")+1, Url.length)=="page-top"){
         Url = Url.substring(0,Url.lastIndexOf("#"));
     }
     Id = Url.substring(Url.lastIndexOf("/")+1, Url.length);

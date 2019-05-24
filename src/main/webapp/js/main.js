@@ -94,6 +94,9 @@ function onConnected() {
     //////////////////////////////////////////////////////////////////////////////////
     
     var Url= window.location.href;
+    if (Url.substring(Url.lastIndexOf("/")+1, Url.length)=="page-top"){
+        Url = Url.substring(0,Url.lastIndexOf("#"));
+    }
     Id = Url.substring(Url.lastIndexOf("/")+1, Url.length);
 
     // subscribe to the specific game topic
